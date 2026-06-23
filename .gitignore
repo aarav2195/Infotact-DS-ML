@@ -9,13 +9,13 @@ venv/
 .ipynb_checkpoints/
 
 # Dataset Files
-data/raw/*
-data/processed/*
+data/
 
-# Model Files
-models/
-*.pkl
-*.joblib
+# Model File
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.pt
 
 # VS Code
 .vscode/
