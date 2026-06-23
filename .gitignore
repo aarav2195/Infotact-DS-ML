@@ -12,10 +12,7 @@ venv/
 data/
 
 # Model File
-models/*.pkl
-models/*.joblib
-models/*.h5
-models/*.pt
+models/
 
 # VS Code
 .vscode/
