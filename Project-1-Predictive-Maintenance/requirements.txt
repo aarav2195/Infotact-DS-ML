@@ -1,10 +1,9 @@
 pandas
 numpy
+scikit-learn==1.5.2
+imbalanced-learn==0.12.4
+lightgbm
 matplotlib
 seaborn
-scikit-learn
-lightgbm
-imbalanced-learn
-streamlit
-shap
 jupyter
+joblib
