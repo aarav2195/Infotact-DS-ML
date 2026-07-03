@@ -40,7 +40,11 @@ SMOTE Based Training Pipeline
         ↓
 LightGBM Model Training
         ↓
-Model Evaluation and Analysis
+Threshold Tuning
+        ↓
+Noise Sensitivity Analysis
+        ↓
+Interactive Dashboard
 ```
 
 
@@ -126,12 +130,30 @@ Generated:
 - feature_importance.csv
 
 
+## Week 4: Noise Sensitivity Analysis and Deployment
+
+Completed:
+
+- Threshold tuning
+- Precision-Recall evaluation
+- Noise robustness analysis
+- Final model serialization
+- Deployment modules
+- Interactive Streamlit dashboard
+
+Generated:
+
+- app.py
+- dashboard.py
 
 # Project Structure
 
 ```
 Project-1-Predictive-Maintenance
 
+├── app
+│   └── app.py
+│
 ├── data
 │   ├── external
 │   │   └── external_context.csv
@@ -146,7 +168,11 @@ Project-1-Predictive-Maintenance
 │   │   ├── week3_cv_results.csv
 │   │   ├── lightgbm_tuning_results.csv
 │   │   ├── final_model_results.csv
-│   │   └── feature_importance.csv
+│   │   ├── feature_importance.csv
+│   │   ├── noise_sensitivity_results.csv
+│   │   ├── threshold_tuning_results.csv
+│   │   ├── robustness_comparison.csv
+│   │   └── deployment_validation_results.csv 
 │   │
 │   └── raw
 │       └── ai4i2020.csv
@@ -166,7 +192,11 @@ Project-1-Predictive-Maintenance
 │   ├── 08_ml_pipeline_setup.ipynb
 │   ├── 09_lightgbm_tuning.ipynb
 │   ├── 10_final_lightgbm_evaluation.ipynb
-│   └── 11_model_analysis.ipynb
+│   ├── 11_model_analysis.ipynb
+│   ├── 12_noise_sensitivity_results.ipynb
+│   ├── 13_precision_recall_threshold_tuning.ipynb
+│   ├── 14_robustness_comparison.ipynb
+│   └── 15_deployment_validation.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -183,14 +213,23 @@ Project-1-Predictive-Maintenance
 │   │   ├── day5_validation.md
 │   │   └── week2_summary.md
 │   │
-│   └── week-3
-│       ├── day1_ml_setup.md
-│       ├── day2_smote_lightgbm.md
-│       ├── day3_lightgbm_tuning.md
-│       ├── day4_final_model.md
-│       ├── day5_model_analysis.md
-│       └── week3_summary.md
+│   ├── week-3
+│   │   ├── day1_ml_setup.md
+│   │   ├── day2_smote_lightgbm.md
+│   │   ├── day3_lightgbm_tuning.md
+│   │   ├── day4_final_model.md
+│   │   ├── day5_model_analysis.md
+│   │   └── week3_summary.md
+│   │
+│   ├── week-4
+│       ├── day1_noise_analysis.md
+│       ├── day2_threshold_tuning.md
+│       ├── day3_robustness_analysis.md
+│       ├── day4_deployment_validation.md
+│       ├── day5_dashboard.md
+│       └── week4summary.md
 │
+├── dashboard.py
 ├── README.md
 └── requirements.txt
 ```
@@ -206,8 +245,26 @@ Project-1-Predictive-Maintenance
 - LightGBM
 - Jupyter Notebook
 - Matplotlib
+- Streamlit
 - Git & GitHub
 
+## Interactive Dashboard
+
+An interactive Streamlit dashboard has been developed to demonstrate the predictive maintenance model.
+
+Features include:
+
+- Machine parameter input
+- Automatic feature engineering
+- Real-time failure prediction
+- Failure probability estimation
+- Maintenance recommendations
+
+Run the dashboard locally:
+
+```bash
+streamlit run dashboard.py
+```
 
 ## Current Status
 
@@ -222,16 +279,20 @@ Completed:
 ✅ SMOTE based imbalance handling  
 ✅ Stratified Cross Validation  
 ✅ LightGBM model training  
-✅ Model evaluation and analysis  
+✅ Model evaluation and analysis
+✅ Threshold tuning
+✅ Noise sensitivity analysis
+✅ Model deployment
+✅ Interactive Streamlit dashboard
 
 
 ## Future Work
 
-- Improve model performance using advanced tuning techniques
-- Build real-time prediction pipeline
-- Create API endpoint for machine failure prediction
-- Develop monitoring dashboard for industrial usage
-- Deploy predictive maintenance solution
+- Integrate live industrial IoT sensor streams.
+- Deploy the dashboard on Streamlit Community Cloud.
+- Implement real-time alert notifications.
+- Support multiple machine monitoring.
+- Explore deep learning models for predictive maintenance.
 
 
 ## How to Run
