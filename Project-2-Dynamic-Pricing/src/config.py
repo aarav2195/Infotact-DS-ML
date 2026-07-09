@@ -1,0 +1,13 @@
+TOTAL_ROOMS = 50
+
+BOOKING_DAYS = 30
+
+PRICE_LEVELS = [
+    80,
+    100,
+    120,
+    140,
+    160
+]
+
+RANDOM_SEED = 42
