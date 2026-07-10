@@ -10,11 +10,14 @@ This project develops a Reinforcement Learning based dynamic pricing system for 
 
 Completed
 
+- Project initialization
 - Problem formulation
 - Markov Decision Process design
 - Custom Gym environment initialization
 - State and action space definition
-- Environment reset and step implementation
+- Customer demand simulation
+- Revenue reward calculation
+- Inventory update mechanism
 
 ## Technologies
 

@@ -3,6 +3,7 @@ from gymnasium import spaces
 import numpy as np
 
 from src.config import *
+from src.demand import simulate_demand
 
 class HotelPricingEnv(gym.Env):
 
@@ -29,8 +30,16 @@ class HotelPricingEnv(gym.Env):
     
     def step(self, action):
         price = PRICE_LEVELS[action]
-        reward = 0
+        demand = simulate_demand(price)
+        rooms_sold = min(self.rooms,demand)
+        reward = rooms_sold * price
+        self.rooms -= rooms_sold
         self.day -= 1
-        done = self.day == 0
+        done = (self.day == 0) or (self.rooms==0)
         state = np.array([self.rooms,self.day])
-        return state,reward,done,False,{}
+        info = {
+            "price" : price,
+            "demand" : demand,
+            "rooms_sold" : rooms_sold
+        }
+        return state,reward,done,False,info
