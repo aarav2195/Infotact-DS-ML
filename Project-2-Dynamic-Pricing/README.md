@@ -10,13 +10,18 @@ This project develops a Reinforcement Learning based dynamic pricing system for 
 
 Completed
 
-- Problem formulation
-- Markov Decision Process design
-- Custom Gym environment initialization
+- Project initialization
+- Markov Decision Process formulation
+- Custom Gym environment development
 - Customer demand simulation
-- Booking-horizon based demand adjustment
-- Revenue calculation
-- Environment validation through multiple simulations
+- Booking-horizon demand adjustment
+- Revenue reward calculation
+- Environment validation
+- Multi-episode simulation testing
+
+## Next Phase
+
+Week 2 will focus on implementing baseline pricing strategies and introducing Q-Learning for dynamic pricing optimization.
 
 ## Technologies
 
