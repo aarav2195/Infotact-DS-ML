@@ -30,7 +30,7 @@ class HotelPricingEnv(gym.Env):
     
     def step(self, action):
         price = PRICE_LEVELS[action]
-        demand = simulate_demand(price)
+        demand = simulate_demand(price,self.day)
         rooms_sold = min(self.rooms,demand)
         reward = rooms_sold * price
         self.rooms -= rooms_sold
