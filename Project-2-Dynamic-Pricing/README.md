@@ -19,6 +19,16 @@ Completed
 - Environment validation
 - Multi-episode simulation testing
 
+### Week 2
+
+Completed
+
+- Implemented baseline pricing strategies
+- Evaluated Fixed Price Agent
+- Evaluated Random Price Agent
+- Evaluated Discount Pricing Agent
+- Generated baseline performance comparison
+
 ## Next Phase
 
 Week 2 will focus on implementing baseline pricing strategies and introducing Q-Learning for dynamic pricing optimization.
