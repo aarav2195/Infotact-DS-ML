@@ -22,4 +22,6 @@ Implement baseline pricing strategies for comparison with reinforcement learning
 
 ## Result
 
-Three baseline pricing strategies were successfully implemented and evaluated. These benchmark results will be used to assess the performance of the Q-Learning agent in the next phase.
+Implemented and evaluated three heuristic pricing strategies to establish benchmark performance before reinforcement learning.
+
+Performance was assessed using multiple evaluation metrics including revenue, occupancy rate, average selling price, and rooms sold across 50 simulation episodes.

@@ -19,9 +19,11 @@ def discount_agent(day_remaining):
 
     if day_remaining > 20:
         return 4
-    elif day_remaining > 10:
+    elif day_remaining > 15:
         return 3
-    elif day_remaining > 5:
+    elif day_remaining > 10:
         return 2
+    elif day_remaining > 5:
+        return 1
     else:
-        return 10
+        return 0
