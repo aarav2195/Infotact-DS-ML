@@ -23,15 +23,11 @@ Completed
 
 Completed
 
-- Implemented baseline pricing strategies
-- Evaluated Fixed Price Agent
-- Evaluated Random Price Agent
-- Evaluated Discount Pricing Agent
-- Generated baseline performance comparison
-
-## Next Phase
-
-Week 2 will focus on implementing baseline pricing strategies and introducing Q-Learning for dynamic pricing optimization.
+- Implemented Fixed, Random and Discount pricing agents
+- Evaluated baseline strategies
+- Compared revenue and occupancy metrics
+- Designed discrete state representation
+- Initialized Q-table for reinforcement learning
 
 ## Technologies
 
