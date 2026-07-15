@@ -23,11 +23,13 @@ Completed
 
 Completed
 
-- Implemented Fixed, Random and Discount pricing agents
-- Evaluated baseline strategies
-- Compared revenue and occupancy metrics
-- Designed discrete state representation
-- Initialized Q-table for reinforcement learning
+- Implemented Fixed, Random, and Discount pricing agents.
+- Evaluated baseline strategy performance.
+- Defined discrete state representation.
+- Initialized the Q-table.
+- Implemented epsilon-greedy action selection.
+- Implemented the Q-Learning update rule.
+- Verified successful Q-table learning through initial training.
 
 ## Technologies
 

@@ -1,8 +1,6 @@
 import numpy as np
 
-NUM_ROOMS = 51
-NUM_DAYS = 31
-NUM_ACTIONS = 5
+from src.config import(NUM_ROOMS,NUM_DAYS,NUM_ACTIONS)
 
 def state_to_index(rooms_remaining, days_remaining):
     """
@@ -14,5 +12,5 @@ def initialize_q_table():
     """
     Initialize Q-table with zeroes.
     """
-    num_states = NUM_ROOMS * NUM_DAYS
-    return np.zeros((num_states,NUM_ACTIONS))
+    total_states = NUM_ROOMS * NUM_DAYS
+    return np.zeros((total_states,NUM_ACTIONS))

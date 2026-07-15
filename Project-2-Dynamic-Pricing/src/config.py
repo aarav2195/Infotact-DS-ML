@@ -11,3 +11,15 @@ PRICE_LEVELS = [
 ]
 
 RANDOM_SEED = 42
+
+# Reinforcement Learning Parameters
+
+ALPHA = 0.10
+GAMMA = 0.95
+EPSILON = 0.20
+
+NUM_ROOMS = 51
+NUM_DAYS = 31
+NUM_ACTIONS = 5
+
+TRAINING_EPISODES = 100
