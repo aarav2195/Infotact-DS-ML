@@ -12,6 +12,8 @@ PRICE_LEVELS = [
 
 RANDOM_SEED = 42
 
+OPERATING_COST = 25
+
 # Reinforcement Learning Parameters
 
 ALPHA = 0.10

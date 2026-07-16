@@ -32,7 +32,7 @@ class HotelPricingEnv(gym.Env):
         price = PRICE_LEVELS[action]
         demand = simulate_demand(price,self.day)
         rooms_sold = min(self.rooms,demand)
-        reward = rooms_sold * price
+        reward = rooms_sold * (price - OPERATING_COST)
         self.rooms -= rooms_sold
         self.day -= 1
         done = (self.day == 0) or (self.rooms==0)

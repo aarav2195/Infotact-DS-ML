@@ -30,6 +30,11 @@ Completed
 - Implemented epsilon-greedy action selection.
 - Implemented the Q-Learning update rule.
 - Verified successful Q-table learning through initial training.
+- Trained the Q-Learning agent for 1000 episodes.
+- Monitored cumulative reward during training.
+- Evaluated the learned pricing policy.
+- Compared Q-Learning with heuristic baseline strategies.
+- Saved the trained Q-table for future evaluation.
 
 ## Technologies
 

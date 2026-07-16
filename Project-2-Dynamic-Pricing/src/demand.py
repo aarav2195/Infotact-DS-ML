@@ -2,33 +2,35 @@ import numpy as np
 
 def simulate_demand(price, days_remaining):
     """
-    Simulate customer demand based on room price
-    and remaining booking days.
+    Simulate hotel room demand.
+
+    Demand decreases as price increases and
+    increases as the arrival date gets closer.
     """
 
-    # Lower expected demand (more realistic)
-    if price <= 80:
-        base_demand = 2.5
+    # Base demand according to price
+    demand_map = {
+        80: 1.8,
+        100: 1.5,
+        120: 1.2,
+        140: 0.9,
+        160: 0.6
+    }
 
-    elif price <= 100:
-        base_demand = 2.0
+    base = demand_map.get(price, 1.0)
 
-    elif price <= 120:
-        base_demand = 1.7
-
-    elif price <= 140:
-        base_demand = 1.3
-
+    # Booking window effect
+    if days_remaining > 20:
+        booking_factor = 0.80
+    elif days_remaining > 10:
+        booking_factor = 1.00
+    elif days_remaining > 5:
+        booking_factor = 1.20
     else:
-        base_demand = 1.0
+        booking_factor = 1.45
 
-    # Booking demand increases slightly near departure
-    if days_remaining <= 5:
-        base_demand += 0.8
+    expected_demand = base * booking_factor
 
-    elif days_remaining <= 10:
-        base_demand += 0.4
+    demand = np.random.poisson(expected_demand)
 
-    demand = np.random.poisson(base_demand)
-
-    return max(demand, 0)
+    return max(0, demand)
