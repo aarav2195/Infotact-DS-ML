@@ -265,6 +265,14 @@ The project generates:
 - Compared RL with heuristic strategies
 - Generated business performance reports
 
+## 🚀 Week 3 (In Progress)
+
+### Day 1
+- Installed PyTorch for Deep Reinforcement Learning.
+- Designed the Deep Q-Network architecture.
+- Verified forward propagation using sample hotel booking states.
+- Prepared the project for DQN agent implementation.
+
 ---
 
 ## 🔄 Upcoming Work
