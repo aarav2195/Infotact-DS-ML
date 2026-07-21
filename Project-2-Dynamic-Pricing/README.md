@@ -273,16 +273,16 @@ The project generates:
 - Verified forward propagation using sample hotel booking states.
 - Prepared the project for DQN agent implementation.
 
+### Day 2
+- Implemented the Experience Replay Buffer.
+- Stored and managed agent experiences.
+- Verified random mini-batch sampling.
+- Demonstrated replay memory capacity management.
+- Prepared the project for DQN agent implementation.
+
 ---
 
 ## 🔄 Upcoming Work
-
-### Week 3
-
-- Deep Q-Network (DQN)
-- Neural Network Function Approximation
-- Experience Replay
-- Target Network
 
 ### Week 4
 
