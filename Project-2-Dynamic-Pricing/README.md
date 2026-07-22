@@ -280,6 +280,13 @@ The project generates:
 - Demonstrated replay memory capacity management.
 - Prepared the project for DQN agent implementation.
 
+### Day 3
+- Implemented the Deep Q-Network (DQN) Agent.
+- Connected the Replay Buffer with the DQN model.
+- Implemented epsilon-greedy action selection.
+- Verified experience storage and exploration strategy.
+- Prepared the project for DQN training.
+
 ---
 
 ## 🔄 Upcoming Work
