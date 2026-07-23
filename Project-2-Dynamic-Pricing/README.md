@@ -267,25 +267,42 @@ The project generates:
 
 ## 🚀 Week 3 (In Progress)
 
-### Day 1
-- Installed PyTorch for Deep Reinforcement Learning.
-- Designed the Deep Q-Network architecture.
-- Verified forward propagation using sample hotel booking states.
-- Prepared the project for DQN agent implementation.
+### ✅ Day 1 – Deep Q-Network Setup
+- Installed and configured PyTorch for Deep Reinforcement Learning.
+- Designed the Deep Q-Network (DQN) architecture.
+- Verified forward propagation using sample hotel pricing states.
+- Initialized the project for DQN-based learning.
 
-### Day 2
+---
+
+### ✅ Day 2 – Experience Replay
 - Implemented the Experience Replay Buffer.
-- Stored and managed agent experiences.
-- Verified random mini-batch sampling.
-- Demonstrated replay memory capacity management.
-- Prepared the project for DQN agent implementation.
+- Stored agent experiences (state, action, reward, next state).
+- Enabled random mini-batch sampling for stable learning.
+- Managed replay memory capacity efficiently.
+- Prepared replay memory for DQN training.
 
-### Day 3
+---
+
+### ✅ Day 3 – DQN Agent Implementation
 - Implemented the Deep Q-Network (DQN) Agent.
-- Connected the Replay Buffer with the DQN model.
-- Implemented epsilon-greedy action selection.
-- Verified experience storage and exploration strategy.
-- Prepared the project for DQN training.
+- Integrated the neural network with the replay buffer.
+- Implemented epsilon-greedy exploration strategy.
+- Connected experience storage with agent learning.
+- Verified agent action selection and memory updates.
+
+---
+
+### ✅ Day 4 – Stable DQN Training
+- Trained the DQN agent using replay memory.
+- Added a Target Network for stable Q-value estimation.
+- Replaced Mean Squared Error with Smooth L1 (Huber) Loss.
+- Applied reward scaling for improved learning stability.
+- Implemented gradient clipping to prevent exploding gradients.
+- Periodically synchronized the target network during training.
+- Evaluated the trained DQN agent over multiple episodes.
+- Generated and analyzed DQN training loss curves.
+- Improved overall training stability and convergence.
 
 ---
 
