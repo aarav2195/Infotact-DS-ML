@@ -59,11 +59,14 @@ Project-2-Dynamic-Pricing/
 │   ├── raw/
 │   └── processed/
 │       ├── baseline_results.csv
+│       ├── dqn_training_history.csv
 │       ├── qlearning_results.csv
 │       ├── simulation_results.csv
-│       └── state_space.csv
+│       ├── state_space.csv
+│       └── week2_final_comparison.csv
 │
 ├── models/
+│   ├── dqn_model.pth
 │   └── q_table.npy
 │
 ├── notebooks/
@@ -76,7 +79,12 @@ Project-2-Dynamic-Pricing/
 │   ├── 07_qlearning_preparation.ipynb
 │   ├── 08_qlearning_implementation.ipynb
 │   ├── 09_qlearning_training.ipynb
-│   └── 10_performance_analysis.ipynb
+│   ├── 10_performance_analysis.ipynb
+│   ├── 11_dqn_setup.ipynb
+│   ├── 12_replay_buffer.ipynb
+│   ├── 13_dqn_agent.ipynb
+│   ├── 14_dqn_training.ipynb
+│   └── 15_dqn_evaluation.ipynb
 │
 ├── reports/
 │   ├── week-1/
@@ -86,21 +94,31 @@ Project-2-Dynamic-Pricing/
 │   │   ├── day4_environment_validation.md
 │   │   ├── day5_environment_testing.md
 │   │   └── week1_summary.md
-│   └── week-2/
-│       ├── day1_baseline_strategies.md
-│       ├── day2_qlearning_preparation.md
-│       ├── day3_qlearning_implementation.md
-│       ├── day4_qlearning_training.md
-│       ├── day5_performance_analysis.md
-│       └── week2_summary.md
+│   ├── week-2/
+│   │   ├── day1_baseline_strategies.md
+│   │   ├── day2_qlearning_preparation.md
+│   │   ├── day3_qlearning_implementation.md
+│   │   ├── day4_qlearning_training.md
+│   │   ├── day5_performance_analysis.md
+│   │   └── week2_summary.md
+│   └── week-3/
+│       ├── day1_dqn_setup.md
+│       ├── day2_experience_replay.md
+│       ├── day3_dqn_agent.md
+│       ├── day4_dqn_training.md
+│       ├── day5_dqn_evaluation.md
+│       └── week3_summary.md
 │
 ├── src/
 │   ├── baseline_agents.py
 │   ├── config.py
 │   ├── demand.py
+│   ├── dqn_agent.py
+│   ├── dqn_model.py
 │   ├── environment.py
 │   ├── q_learning.py
-│   └── q_learning_utils.py
+│   ├── q_learning_utils.py
+│   └── replay_buffer.py
 │
 ├── README.md
 └── requirements.txt
@@ -247,73 +265,84 @@ The project generates:
 
 ## ✅ Week 1
 
-- Built hotel pricing environment
-- Implemented booking simulation
-- Designed state and action space
-- Created baseline pricing agents
+- Built hotel pricing environment.
+- Implemented booking simulation.
+- Designed the state and action space.
+- Developed baseline pricing strategies.
 
 ---
 
 ## ✅ Week 2
 
-- Implemented Q-Learning algorithm
-- Created Q-Table
-- Trained pricing agent
-- Tuned demand simulation
-- Improved reward function
-- Evaluated learned pricing policy
-- Compared RL with heuristic strategies
-- Generated business performance reports
+- Implemented the Q-Learning algorithm.
+- Built and trained the Q-Table.
+- Tuned demand simulation and reward function.
+- Evaluated learned pricing policies.
+- Compared heuristic pricing strategies with Reinforcement Learning.
+- Generated business performance reports and evaluation metrics.
 
-## 🚀 Week 3 (In Progress)
+---
+
+## ✅ Week 3
 
 ### ✅ Day 1 – Deep Q-Network Setup
-- Installed and configured PyTorch for Deep Reinforcement Learning.
-- Designed the Deep Q-Network (DQN) architecture.
-- Verified forward propagation using sample hotel pricing states.
-- Initialized the project for DQN-based learning.
+
+- Configured the PyTorch environment.
+- Designed the Deep Q-Network architecture.
+- Verified neural network forward propagation.
+- Prepared the project for Deep Reinforcement Learning.
 
 ---
 
 ### ✅ Day 2 – Experience Replay
+
 - Implemented the Experience Replay Buffer.
-- Stored agent experiences (state, action, reward, next state).
-- Enabled random mini-batch sampling for stable learning.
-- Managed replay memory capacity efficiently.
-- Prepared replay memory for DQN training.
+- Stored agent experiences for replay learning.
+- Added random mini-batch sampling.
+- Managed replay memory efficiently.
 
 ---
 
 ### ✅ Day 3 – DQN Agent Implementation
-- Implemented the Deep Q-Network (DQN) Agent.
-- Integrated the neural network with the replay buffer.
-- Implemented epsilon-greedy exploration strategy.
-- Connected experience storage with agent learning.
-- Verified agent action selection and memory updates.
+
+- Developed the Deep Q-Network Agent.
+- Integrated replay memory with the neural network.
+- Implemented epsilon-greedy exploration.
+- Connected experience collection with DQN learning.
 
 ---
 
 ### ✅ Day 4 – Stable DQN Training
-- Trained the DQN agent using replay memory.
-- Added a Target Network for stable Q-value estimation.
-- Replaced Mean Squared Error with Smooth L1 (Huber) Loss.
-- Applied reward scaling for improved learning stability.
-- Implemented gradient clipping to prevent exploding gradients.
-- Periodically synchronized the target network during training.
-- Evaluated the trained DQN agent over multiple episodes.
-- Generated and analyzed DQN training loss curves.
-- Improved overall training stability and convergence.
+
+- Trained the Deep Q-Network.
+- Added Target Network synchronization.
+- Implemented Smooth L1 (Huber) Loss.
+- Applied reward scaling.
+- Added gradient clipping.
+- Generated stable DQN training loss curves.
+- Improved training convergence and learning stability.
+
+---
+
+### ✅ Day 5 – Performance Evaluation
+
+- Evaluated the trained Deep Q-Network.
+- Generated reinforcement learning performance visualizations.
+- Compared DQN with Fixed Pricing, Random Pricing, Discount Pricing, and Q-Learning.
+- Evaluated business metrics including revenue, occupancy, rooms sold, and pricing.
+- Completed the Deep Reinforcement Learning implementation.
 
 ---
 
 ## 🔄 Upcoming Work
 
-### Week 4
+### 🚀 Week 4
 
 - Hyperparameter Tuning
 - Policy Optimization
 - Performance Benchmarking
 - Final Evaluation
+- Project Documentation and Optimization
 
 ---
 

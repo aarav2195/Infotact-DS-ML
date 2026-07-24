@@ -111,7 +111,7 @@ class DQNAgent:
         current_q = current_q.gather(1,actions.unsqueeze(1)).squeeze()
 
         with torch.no_grad():
-            next_q = self.model(next_states)
+            next_q = self.target_model(next_states)
             next_q = torch.max(next_q,dim=1)[0]
 
         target_q = rewards + (self.gamma * next_q * (1-dones))
