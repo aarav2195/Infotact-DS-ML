@@ -314,11 +314,21 @@ The project generates:
 
 ---
 
+### ✅ Day 2 – Strategy Benchmarking
+
+- Loaded the Week 2 baseline evaluation results.
+- Integrated the Deep Q-Network policy evaluation results.
+- Benchmarked DQN against Fixed Pricing, Random Pricing, Discount Pricing, and Q-Learning.
+- Compared business metrics including revenue, rooms sold, occupancy, and average price.
+- Generated comparative business performance visualizations.
+- Exported the final strategy comparison dataset for dashboard development.
+
+---
+
 ## 🔄 Upcoming Work
 
 ### Week 4
 
-- Benchmark the DQN agent against baseline pricing strategies.
 - Analyze learned price trajectories over booking seasons.
 - Develop an interactive business performance dashboard.
 - Perform final policy evaluation and business analysis.
