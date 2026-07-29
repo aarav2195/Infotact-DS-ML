@@ -60,7 +60,9 @@ Project-2-Dynamic-Pricing/
 │   └── processed/
 │       ├── baseline_results.csv
 │       ├── dqn_training_history.csv
+│       ├── final_startegy_comparison.csv
 │       ├── policy_evaluation.csv
+│       ├── price_trajectory.csv
 │       ├── qlearning_results.csv
 │       ├── simulation_results.csv
 │       ├── state_space.csv
@@ -86,7 +88,9 @@ Project-2-Dynamic-Pricing/
 │   ├── 13_dqn_agent.ipynb
 │   ├── 14_dqn_training.ipynb
 │   ├── 15_dqn_evaluation.ipynb
-│   └── 16_policy_evaluation.ipynb
+│   ├── 16_policy_evaluation.ipynb
+│   ├── 17_strategy_comparison.ipynb
+│   └── 18_price_trajectory_analysis.ipynb
 │
 ├── reports/
 │   ├── week-1/
@@ -111,7 +115,9 @@ Project-2-Dynamic-Pricing/
 │   │   ├── day5_dqn_evaluation.md
 │   │   └── week3_summary.md
 │   └── week-4/
-│       └── day1_policy_evaluation.md
+│       ├── day1_policy_evaluation.md
+│       ├── day2_strategy_comparison.md
+│       └── day3_price_trajectory.md
 │
 ├── src/
 │   ├── baseline_agents.py
@@ -323,15 +329,23 @@ The project generates:
 - Generated comparative business performance visualizations.
 - Exported the final strategy comparison dataset for dashboard development.
 
+### ✅ Day 3 – Pricing Trajectory Analysis
+
+- Simulated a complete hotel booking season using the trained DQN agent.
+- Recorded daily pricing decisions throughout the booking horizon.
+- Tracked room inventory, occupancy progression, and cumulative revenue.
+- Generated pricing trajectory and business performance visualizations.
+- Exported trajectory data for dashboard development.
+
 ---
 
 ## 🔄 Upcoming Work
 
 ### Week 4
 
-- Analyze learned price trajectories over booking seasons.
-- Develop an interactive business performance dashboard.
-- Perform final policy evaluation and business analysis.
+- Develop the business performance dashboard.
+- Integrate evaluation, benchmarking, and trajectory analytics.
+- Perform final business analysis and policy evaluation.
 - Complete project documentation and repository finalization.
 
 ---
