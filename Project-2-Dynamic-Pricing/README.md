@@ -90,7 +90,8 @@ Project-2-Dynamic-Pricing/
 │   ├── 15_dqn_evaluation.ipynb
 │   ├── 16_policy_evaluation.ipynb
 │   ├── 17_strategy_comparison.ipynb
-│   └── 18_price_trajectory_analysis.ipynb
+│   ├── 18_price_trajectory_analysis.ipynb
+│   └── 19_price_trajectory.ipynb
 │
 ├── reports/
 │   ├── week-1/
@@ -117,7 +118,10 @@ Project-2-Dynamic-Pricing/
 │   └── week-4/
 │       ├── day1_policy_evaluation.md
 │       ├── day2_strategy_comparison.md
-│       └── day3_price_trajectory.md
+│       ├── day3_price_trajectory.md
+│       ├── day4_dashboard.md
+│       ├── day5_final_dashboard.md
+│       └── week4_summary.md
 │
 ├── src/
 │   ├── baseline_agents.py
