@@ -113,17 +113,31 @@ section[data-testid="stSidebar"] *{
 st.markdown(
     """
 <div class="main-title">
-🏨 Hotel Dynamic Pricing Dashboard
+🏨 Hotel Dynamic Pricing using Deep Reinforcement Learning
 </div>
 
 <div class="sub-title">
-Deep Reinforcement Learning based Dynamic Pricing System
+Dynamic Pricing Strategy Evaluation Dashboard
 </div>
 """,
 unsafe_allow_html=True
 )
 
 st.divider()
+
+st.markdown("## 📋 Executive Summary")
+
+st.write("""
+The Hotel Dynamic Pricing system was evaluated across multiple pricing strategies
+using simulated booking seasons.
+
+The Deep Q-Network (DQN) agent demonstrated competitive revenue generation while
+maintaining healthy occupancy levels and balanced pricing decisions.
+
+This dashboard summarizes the business performance of each pricing strategy,
+allowing managers to compare revenue, occupancy, rooms sold, and pricing behavior
+through interactive visualizations.
+""")
 
 # ---------------------------------------------------
 # Sidebar
@@ -257,7 +271,7 @@ with col1:
         strategy_results,
         x="Strategy",
         y="Average Revenue",
-        title="Average Revenue",
+        title="Revenue Comparison",
         text_auto=".2s",
         color="Strategy"
     )
@@ -277,7 +291,7 @@ with col2:
         strategy_results,
         x="Strategy",
         y="Average Occupancy (%)",
-        title="Average Occupancy",
+        title="Occupancy Comparison",
         text_auto=".2f",
         color="Strategy"
     )
@@ -299,7 +313,7 @@ with col3:
         strategy_results,
         x="Strategy",
         y="Average Rooms Sold",
-        title="Average Rooms Sold",
+        title="Rooms Sold Comparison",
         text_auto=".2f",
         color="Strategy"
     )
@@ -319,7 +333,7 @@ with col4:
         strategy_results,
         x="Strategy",
         y="Average Price",
-        title="Average Price",
+        title="Average Room Price Comparison",
         text_auto=".2f",
         color="Strategy"
     )
@@ -338,7 +352,7 @@ st.divider()
 st.markdown(
 """
 <div class="section-title">
-📋 Strategy Comparison Table
+📋 Detailed Strategy Performance
 </div>
 """,
 unsafe_allow_html=True
@@ -346,10 +360,213 @@ unsafe_allow_html=True
 
 comparison_df = strategy_results.copy()
 
-comparison_df.index = comparison_df.index + 1
+# This remains numeric for calculations
+display_df = comparison_df.copy()
+
+display_df["Average Revenue"] = display_df["Average Revenue"].map(
+    lambda x: f"${x:,.2f}"
+)
+
+display_df["Average Price"] = display_df["Average Price"].map(
+    lambda x: f"${x:.2f}"
+)
+
+display_df["Average Occupancy (%)"] = display_df["Average Occupancy (%)"].map(
+    lambda x: f"{x:.2f}%"
+)
+
+display_df = display_df.drop(columns=["Episodes"])
 
 st.dataframe(
-    comparison_df,
+    display_df,
     use_container_width=True,
     hide_index=True
+)
+
+st.markdown("---")
+st.markdown("## 🏆 Strategy Ranking")
+
+ranking = comparison_df.sort_values(
+    by="Average Revenue",
+    ascending=False
+).reset_index(drop=True)
+
+medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"]
+
+cols = st.columns(5)
+
+for i in range(len(ranking)):
+    with cols[i]:
+        st.metric(medals[i],ranking.loc[i,"Strategy"],f"${ranking.loc[i,'Average Revenue']:.2f}")
+
+st.markdown("---")
+st.markdown("## 💡 Business Insights")
+
+best_revenue = comparison_df.loc[
+    comparison_df["Average Revenue"].idxmax()
+]
+
+best_occupancy = comparison_df.loc[
+    comparison_df["Average Occupancy (%)"].idxmax()
+]
+
+best_rooms = comparison_df.loc[
+    comparison_df["Average Rooms Sold"].idxmax()
+]
+
+best_price = comparison_df.loc[
+    comparison_df["Average Price"].idxmax()
+]
+
+c1, c2 = st.columns(2)
+
+with c1:
+
+    st.metric(
+        "💰 Revenue Leader",
+        best_revenue["Strategy"],
+        f"${best_revenue['Average Revenue']:.2f}"
+    )
+
+    st.metric(
+        "🛏 Occupancy Leader",
+        best_occupancy["Strategy"],
+        f"{best_occupancy['Average Occupancy (%)']:.2f}%"
+    )
+
+with c2:
+
+    st.metric(
+        "💵 Pricing Leader",
+        best_price["Strategy"],
+        f"${best_price['Average Price']:.2f}"
+    )
+
+    st.metric(
+        "🤖 AI Strategy",
+        "Deep Q-Network",
+        "16.38% Revenue Improvement over Q-Learning"
+    )
+
+# =====================================================
+# Price Trajectory
+# =====================================================
+
+st.markdown("---")
+
+st.markdown(
+"""
+<div class="section-title">
+📈 Adaptive Pricing Behaviour
+</div>
+""",
+unsafe_allow_html=True
+)
+
+fig = px.line(
+    trajectory,
+    x="Day",
+    y="Price",
+    markers=True,
+    title="Room Price Across Booking Days"
+)
+
+fig.update_layout(
+    template="plotly_white",
+    height=500,
+    xaxis_title="Booking Day",
+    yaxis_title="Room Price ($)"
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
+
+st.markdown("---")
+
+st.markdown(
+"""
+<div class="section-title">
+📈 Booking Occupancy Trend
+</div>
+""",
+unsafe_allow_html=True
+)
+
+fig = px.line(
+    trajectory,
+    x="Day",
+    y="Occupancy (%)",
+    markers=True,
+    title="Occupancy Growth"
+)
+
+fig.update_layout(
+    template="plotly_white",
+    height=500,
+    xaxis_title="Booking Day",
+    yaxis_title="Occupancy (%)"
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
+
+st.markdown("---")
+
+st.markdown(
+"""
+<div class="section-title">
+💰 Revenue Accumulation
+</div>
+""",
+unsafe_allow_html=True
+)
+
+fig = px.line(
+    trajectory,
+    x="Day",
+    y="Revenue",
+    markers=True,
+    title="Cumulative Revenue"
+)
+
+fig.update_layout(
+    template="plotly_white",
+    height=500,
+    xaxis_title="Booking Day",
+    yaxis_title="Revenue ($)"
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
+
+st.markdown("---")
+
+st.markdown(
+"""
+<div class="section-title">
+📌 Final Conclusion
+</div>
+""",
+unsafe_allow_html=True
+)
+
+st.markdown("""
+- ✅ Five pricing strategies were evaluated successfully.
+- ✅ Deep Q-Network maintained a balanced pricing policy.
+- ✅ Fixed Pricing generated the highest average revenue.
+- ✅ Q-Learning achieved the highest occupancy.
+- ✅ The dashboard provides interactive business insights for hotel revenue management.
+""")
+
+st.markdown("---")
+
+st.caption(
+    "Hotel Dynamic Pricing using Deep Reinforcement Learning (DQN) | "
+    "Infotact Solutions Internship | Week 4 Final Dashboard"
 )

@@ -308,53 +308,15 @@ The project generates:
 
 ---
 
-## 🚀 Week 4 (In Progress)
+## ✅ Week 4
 
-### ✅ Day 1 – Large-Scale Policy Evaluation
-
-- Loaded the trained Deep Q-Network model.
-- Evaluated the pricing policy across 1,000 simulated booking seasons.
-- Collected revenue, rooms sold, occupancy, and average price metrics.
-- Generated descriptive statistics and performance distributions.
-- Exported the policy evaluation dataset for further business analysis.
-
----
-
-### ✅ Day 2 – Strategy Benchmarking
-
-- Loaded the Week 2 baseline evaluation results.
-- Integrated the Deep Q-Network policy evaluation results.
-- Benchmarked DQN against Fixed Pricing, Random Pricing, Discount Pricing, and Q-Learning.
-- Compared business metrics including revenue, rooms sold, occupancy, and average price.
-- Generated comparative business performance visualizations.
-- Exported the final strategy comparison dataset for dashboard development.
-
-### ✅ Day 3 – Pricing Trajectory Analysis
-
-- Simulated a complete hotel booking season using the trained DQN agent.
-- Recorded daily pricing decisions throughout the booking horizon.
-- Tracked room inventory, occupancy progression, and cumulative revenue.
-- Generated pricing trajectory and business performance visualizations.
-- Exported trajectory data for dashboard development.
-
-### ✅ Day 4 – Interactive Dashboard Development
-
-- Developed the Streamlit-based business dashboard.
-- Implemented Business Overview KPI cards.
-- Integrated interactive Plotly visualizations.
-- Added strategy comparison tables.
-- Applied responsive layout and custom CSS styling.
-- Prepared the dashboard for executive business analytics.
-
----
-
-## 🔄 Upcoming Work
-
-### Week 4
-
-- Integrate evaluation, benchmarking, and trajectory analytics.
-- Perform final business analysis and policy evaluation.
-- Complete project documentation and repository finalization.
+- Evaluated the trained Deep Q-Network over 1000 simulated booking seasons.
+- Compared DQN with Fixed, Random, Discount, and Q-Learning pricing strategies.
+- Generated business performance metrics including revenue, occupancy, rooms sold, and pricing.
+- Built an interactive Streamlit dashboard for business analytics.
+- Visualized pricing trajectory, occupancy trend, and cumulative revenue.
+- Generated strategy rankings and executive business insights.
+- Completed the final hotel dynamic pricing system.
 
 ---
 
