@@ -53,7 +53,7 @@ Designed and implemented an intelligent hotel dynamic pricing system using Reinf
 
 ## ⏳ Project 3 – Geospatial Real Estate Valuation
 
-**Status:** Planned
+**Status:** Week 1 In Progress
 
 ### Description
 
@@ -68,7 +68,7 @@ Infotact-DS-ML
 │
 ├── Project-1-Predictive-Maintenance
 ├── Project-2-Dynamic-Pricing
-├── Project-3-Geospatial-Real-Estate-Valuation (Upcoming)
+├── Project-3-Geospatial-Real-Estate-Valuation (Week 1 In Progress)
 ├── .gitignore
 └── README.md
 ```
@@ -81,7 +81,7 @@ Infotact-DS-ML
 |----------|--------|
 | ✅ Project 1 – Contextual Predictive Maintenance | Completed |
 | ✅ Project 2 – Dynamic Pricing using Deep Reinforcement Learning | Completed |
-| ⏳ Project 3 – Geospatial Real Estate Valuation | Planned |
+| 🚀 Project 3 – Geospatial Real Estate Valuation | Week 1 In Progress |
 
 ---
 
@@ -89,6 +89,6 @@ Infotact-DS-ML
 
 - ✅ Project 1 Completed
 - ✅ Project 2 Completed
-- ⏳ Project 3 Planned
+- 🚀 Project 3 - Week 1 In Progress
 
 Overall Internship Progress: **2 / 3 Projects Completed**
