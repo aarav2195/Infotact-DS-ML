@@ -67,13 +67,19 @@ Project-3-Geospatial-Valuation
 │
 ├── notebooks
 │   ├── 01_data_acquisition.ipynb
-│   └── 02_spatial_feature_engineering.ipynb
+│   ├── 02_spatial_feature_engineering.ipynb
+│   └── 03_geospatial_visualization.ipynb
 │
 ├── reports
 │   └──week-1
+│      ├── visualizations
+│      │   ├── property_locations.html
+│      │   ├── property_price_distribution.html
+│      │   └── property_price_heatmap.html
 │      ├── day1_data_acquisition.md
 │      ├── day2_geospatial_preprocessing.md
-│      └── day3_spatial_feature_engineering.md
+│      ├── day3_spatial_feature_engineering.md
+│      └── day4_geospatial_visualizations.md
 │
 ├── requirements.txt
 └── README.md
@@ -86,82 +92,80 @@ Project-3-Geospatial-Valuation
 ## ✅ Week 1
 
 ### ✅ Day 1 – Data Acquisition and Exploration
-
-- Downloaded and organized the King County Housing dataset.
-- Performed exploratory data analysis.
-- Verified geographical coordinates.
-- Analyzed the initial house price distribution.
+- Downloaded and organized the King County Housing Dataset.
+- Performed Exploratory Data Analysis (EDA).
+- Verified latitude and longitude coordinates.
+- Analyzed house price distribution and geographical coverage.
+- Prepared the raw dataset for preprocessing.
 
 ---
 
 ### ✅ Day 2 – Data Cleaning and Preprocessing
-
-- Cleaned the housing dataset.
-- Removed duplicate records.
-- Normalized extreme property prices.
-- Engineered temporal and housing age features.
-- Prepared the dataset for spatial analysis.
+- Removed duplicate property records.
+- Handled missing values.
+- Normalized extreme house price outliers.
+- Created additional temporal and housing age features.
+- Saved cleaned dataset for spatial analysis.
 
 ---
 
 ### ✅ Day 3 – Spatial Feature Engineering
-
-- Implemented BallTree neighbor search.
-- Computed Haversine distances.
-- Engineered neighborhood-based spatial features.
-- Generated neighborhood pricing statistics.
-- Created spatial analysis visualizations.
-- Prepared the dataset for geospatial visualization and machine learning.
-
----
-
-## 🔄 Upcoming Work
-
-### 🚀 Week 1
-
-#### Day 4
-
-- Interactive Geospatial Visualization using Folium.
-- Property Price Distribution Map.
-- Neighborhood Price Heatmaps.
-- Spatial Trend Analysis.
+- Implemented BallTree for efficient K-Nearest Neighbor search.
+- Calculated Haversine distances between neighboring houses.
+- Generated neighborhood-based spatial features.
+- Computed neighborhood price statistics.
+- Created GeoJSON dataset for map visualization.
+- Saved spatial feature dataset for visualization.
 
 ---
 
-#### Day 5
+### ✅ Day 4 – Interactive Geospatial Visualization
+- Built interactive Folium maps.
+- Visualized property locations on an interactive map.
+- Generated property price distribution map.
+- Created neighborhood price heatmap.
+- Exported interactive HTML maps.
+- Verified geographical pricing trends visually.
 
-- Finalize Week 1.
-- Complete project documentation.
-- Review geospatial preprocessing pipeline.
+---
+
+# 🚀 Upcoming Work
+
+### ⏳ Day 5
+- Finalize Week 1 implementation.
+- Review complete geospatial preprocessing pipeline.
+- Validate generated spatial datasets.
+- Update documentation.
 - Push finalized Week 1 implementation to GitHub.
 
 ---
 
-### 🚀 Week 2
-
-- Feature Engineering.
-- Baseline Machine Learning Model.
-- XGBoost Regression.
-- Model Evaluation using RMSE and MAPE.
-
----
-
-### 🚀 Week 3
-
-- Graph Construction.
-- K-Nearest Neighbor Graph.
-- Spatial Embeddings.
-- Graph Dataset Preparation.
+## ⏳ Week 2 – Baseline Machine Learning
+- Engineer additional valuation features.
+- Calculate distance to city center.
+- Train Linear Regression baseline.
+- Train XGBoost Regressor.
+- Evaluate using RMSE and MAPE.
+- Compare baseline models.
 
 ---
 
-### 🚀 Week 4
+## ⏳ Week 3 – Spatial Embeddings & Graph Construction
+- Construct K-Nearest Neighbor Graph.
+- Create graph nodes and edges.
+- Generate spatial embeddings.
+- Prepare graph dataset for Graph Neural Networks.
+- Analyze neighborhood connectivity.
 
-- Graph Neural Network (GNN).
-- Attention-based Spatial Modeling.
-- Model Comparison.
-- Interactive Streamlit Dashboard.
-- Final Project Deployment.
+---
+
+## ⏳ Week 4 – Graph Neural Network & Deployment
+- Train Graph Neural Network (GNN).
+- Implement Attention-Based Spatial Modeling.
+- Compare GNN against XGBoost baseline.
+- Deploy Streamlit dashboard.
+- Visualize predicted property prices on interactive maps.
+- Final GitHub documentation and project deployment.
 
 ---
 
@@ -174,6 +178,7 @@ The project has successfully completed:
 - Dataset acquisition
 - Data preprocessing
 - Spatial feature engineering
+- Interactive Geospatial Visualization
 
 The next phase focuses on interactive geospatial visualization before moving into machine learning and graph-based valuation models.
 
