@@ -63,23 +63,30 @@ Project-3-Geospatial-Valuation
 │   └── processed
 │       ├── clean_house_data.csv
 │       ├── clean_houses.geojson
-│       └── spatial_features.csv
+│       ├── spatial_features.csv
+│       └── tabular_features.csv
 │
 ├── notebooks
 │   ├── 01_data_acquisition.ipynb
 │   ├── 02_spatial_feature_engineering.ipynb
-│   └── 03_geospatial_visualization.ipynb
+│   ├── 03_geospatial_visualization.ipynb
+│   └── 04_tabular_feature_engineering.ipynb
 │
 ├── reports
-│   └──week-1
-│      ├── visualizations
-│      │   ├── property_locations.html
-│      │   ├── property_price_distribution.html
-│      │   └── property_price_heatmap.html
-│      ├── day1_data_acquisition.md
-│      ├── day2_geospatial_preprocessing.md
-│      ├── day3_spatial_feature_engineering.md
-│      └── day4_geospatial_visualizations.md
+│   ├── week-1
+│   │   ├── visualizations
+│   │   │   ├── property_locations.html
+│   │   │   ├── property_price_distribution.html
+│   │   │   └── property_price_heatmap.html
+│   │   │
+│   │   ├── day1_data_acquisition.md
+│   │   ├── day2_geospatial_preprocessing.md
+│   │   ├── day3_spatial_feature_engineering.md
+│   │   ├── day4_geospatial_visualizations.md
+│   │   └── day5_week1_validation.md
+│   │
+│   └── week-2
+│       └── day1_tabular_feature_engineering.md
 │
 ├── requirements.txt
 └── README.md
@@ -158,15 +165,64 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 
 ---
 
+## 🚀 Week 2 – Baseline Machine Learning
+
+### ✅ Day 1 – Standard Tabular Feature Engineering
+
+* Loaded the cleaned Week 1 housing dataset.
+* Validated the input dataset and numerical features.
+* Engineered house-age features.
+* Created renovation-related features.
+* Calculated distance to Seattle city center using Haversine distance.
+* Created additional property-level ratio features.
+* Handled missing and infinite values.
+* Prepared an ML-ready tabular dataset.
+* Saved the Week 2 feature dataset as `tabular_features.csv`.
+
+### Week 2 Day 1 Outcome
+
+The standard tabular feature-engineering pipeline has been completed.
+
+The resulting dataset provides the conventional property-level feature representation required to establish the baseline machine-learning models.
+
+The generated dataset is:
+
+`data/processed/tabular_features.csv`
+
+This dataset will be used for the baseline regression and XGBoost experiments.
+
+---
+
 # 🚀 Upcoming Work
 
-## ⏳ Week 2 – Baseline Machine Learning
-- Engineer additional valuation features.
-- Calculate distance to city center.
+## 🚀 Week 2 – Baseline Machine Learning
+
+### ⏳ Day 2 – Baseline Regression
+
+- Create train/test split.
 - Train Linear Regression baseline.
+- Generate initial price predictions.
+- Evaluate baseline performance.
+
+### ⏳ Day 3 – XGBoost Regression
+
 - Train XGBoost Regressor.
-- Evaluate using RMSE and MAPE.
-- Compare baseline models.
+- Tune the baseline model where appropriate.
+- Generate property-price predictions.
+
+### ⏳ Day 4 – Model Evaluation
+
+- Calculate RMSE.
+- Calculate MAPE.
+- Compare Linear Regression and XGBoost.
+- Analyze baseline model limitations.
+
+### ⏳ Day 5 – Week 2 Validation
+
+- Validate the complete baseline ML pipeline.
+- Document findings.
+- Analyze limitations in spatially complex neighborhoods.
+- Complete Week 2 summary.
 
 ---
 
@@ -191,16 +247,40 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 
 # Current Status
 
-**Week 1 is currently in progress.**
+**Week 1 – Completed ✅**
 
-The project has successfully completed:
+**Week 2 – Day 1 Completed ✅**
 
-- Dataset acquisition
-- Data preprocessing
-- Spatial feature engineering
-- Interactive Geospatial Visualization
+### Completed Work
 
-The next phase focuses on interactive geospatial visualization before moving into machine learning and graph-based valuation models.
+#### Week 1
+
+* Dataset acquisition
+* Data exploration
+* Data cleaning and preprocessing
+* Spatial feature engineering
+* BallTree-based neighbor analysis
+* Haversine distance calculation
+* Interactive geospatial visualization
+* Week 1 validation and documentation
+
+#### Week 2 – Day 1
+
+* Standard tabular feature engineering
+* House-age feature
+* Renovation features
+* Distance-to-city-center feature
+* Property-level ratio features
+* ML-ready dataset preparation
+* Final dataset validation
+
+### Current Output
+
+`data/processed/tabular_features.csv`
+
+### Next Phase
+
+The next stage focuses on establishing the traditional machine-learning benchmark using Linear Regression and XGBoost Regression, followed by RMSE and MAPE evaluation.
 
 ---
 
