@@ -165,7 +165,7 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 
 ---
 
-## 🚀 Week 2 – Baseline Machine Learning
+## 🔄 Week 2 – Baseline Machine Learning
 
 ### ✅ Day 1 – Standard Tabular Feature Engineering
 
@@ -179,69 +179,88 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 * Prepared an ML-ready tabular dataset.
 * Saved the Week 2 feature dataset as `tabular_features.csv`.
 
-### Week 2 Day 1 Outcome
+---
 
-The standard tabular feature-engineering pipeline has been completed.
+### ✅ Day 2 – Train/Test Split and Linear Regression Baseline
 
-The resulting dataset provides the conventional property-level feature representation required to establish the baseline machine-learning models.
-
-The generated dataset is:
-
-`data/processed/tabular_features.csv`
-
-This dataset will be used for the baseline regression and XGBoost experiments.
+* Selected baseline property and location features.
+* Included `house_age` and `distance_to_city_center_km`.
+* Validated feature completeness and missing values.
+* Created an 80/20 training and holdout dataset split.
+* Implemented a standardized Linear Regression baseline.
+* Generated holdout predictions and initial prediction-error analysis.
+* Saved the trained model as `linear_regression_baseline.pkl`.
+* Saved training and holdout datasets for subsequent evaluation.
 
 ---
 
-# 🚀 Upcoming Work
+## 📌 Week 2 Progress
 
-## 🚀 Week 2 – Baseline Machine Learning
+Week 2 is currently in progress.
 
-### ⏳ Day 2 – Baseline Regression
+The project has now established the **traditional tabular machine-learning foundation** required for property-price valuation.
 
-- Create train/test split.
-- Train Linear Regression baseline.
-- Generate initial price predictions.
-- Evaluate baseline performance.
+The current workflow is:
+
+**Tabular Feature Engineering → Train/Test Split → Linear Regression Baseline → XGBoost Baseline → Model Evaluation**
+
+The Linear Regression model serves as the first benchmark against which the stronger XGBoost model and later spatial/graph-based models will be compared.
+
+---
+
+## 🚀 Upcoming Work
 
 ### ⏳ Day 3 – XGBoost Regression
 
-- Train XGBoost Regressor.
-- Tune the baseline model where appropriate.
-- Generate property-price predictions.
+* Train an XGBoost Regressor using the prepared baseline features.
+* Generate property-price predictions on the holdout dataset.
+* Compare XGBoost predictions against the Linear Regression baseline.
+* Save the trained XGBoost model.
 
-### ⏳ Day 4 – Model Evaluation
+---
 
-- Calculate RMSE.
-- Calculate MAPE.
-- Compare Linear Regression and XGBoost.
-- Analyze baseline model limitations.
+### ⏳ Day 4 – Model Evaluation and Error Analysis
+
+* Calculate RMSE for the baseline models.
+* Calculate MAPE for the baseline models.
+* Compare Linear Regression and XGBoost performance.
+* Analyze prediction errors.
+* Investigate limitations of traditional tabular models in spatially complex and rapidly changing neighborhoods.
+
+---
 
 ### ⏳ Day 5 – Week 2 Validation
 
-- Validate the complete baseline ML pipeline.
-- Document findings.
-- Analyze limitations in spatially complex neighborhoods.
-- Complete Week 2 summary.
+* Validate the complete Week 2 machine-learning pipeline.
+* Review baseline model outputs.
+* Finalize Linear Regression and XGBoost comparison.
+* Document Week 2 findings.
+* Prepare the baseline results for spatial and graph-based modeling in Week 3.
 
 ---
 
 ## ⏳ Week 3 – Spatial Embeddings & Graph Construction
-- Construct K-Nearest Neighbor Graph.
-- Create graph nodes and edges.
-- Generate spatial embeddings.
-- Prepare graph dataset for Graph Neural Networks.
-- Analyze neighborhood connectivity.
+
+* Construct a K-Nearest Neighbor (KNN) graph.
+* Represent each property as a graph node.
+* Connect properties using geographic proximity.
+* Generate spatial embeddings.
+* Prepare the graph dataset for Graph Neural Network modeling.
+* Analyze neighborhood connectivity and spatial relationships.
 
 ---
 
 ## ⏳ Week 4 – Graph Neural Network & Deployment
-- Train Graph Neural Network (GNN).
-- Implement Attention-Based Spatial Modeling.
-- Compare GNN against XGBoost baseline.
-- Deploy Streamlit dashboard.
-- Visualize predicted property prices on interactive maps.
-- Final GitHub documentation and project deployment.
+
+* Train a Graph Neural Network (GNN).
+* Implement attention-based spatial modeling.
+* Aggregate information from neighboring properties.
+* Compare GNN performance against the XGBoost baseline.
+* Analyze the improvement in MAPE.
+* Develop the Streamlit valuation dashboard.
+* Visualize predicted property prices on interactive maps.
+* Display influential neighboring properties.
+* Complete final GitHub documentation and project deployment.
 
 ---
 
@@ -249,18 +268,18 @@ This dataset will be used for the baseline regression and XGBoost experiments.
 
 **Week 1 – Completed ✅**
 
-**Week 2 – Day 1 Completed ✅**
+**Week 2 – In Progress 🔄**
 
 ### Completed Work
 
 #### Week 1
 
-* Dataset acquisition
-* Data exploration
+* Dataset acquisition and exploration
 * Data cleaning and preprocessing
 * Spatial feature engineering
 * BallTree-based neighbor analysis
 * Haversine distance calculation
+* Neighborhood pricing features
 * Interactive geospatial visualization
 * Week 1 validation and documentation
 
@@ -268,22 +287,39 @@ This dataset will be used for the baseline regression and XGBoost experiments.
 
 * Standard tabular feature engineering
 * House-age feature
-* Renovation features
+* Renovation-related features
 * Distance-to-city-center feature
 * Property-level ratio features
 * ML-ready dataset preparation
-* Final dataset validation
 
-### Current Output
+#### Week 2 – Day 2
 
-`data/processed/tabular_features.csv`
+* Baseline feature selection
+* 80/20 train/test split
+* Linear Regression baseline
+* Feature standardization
+* Holdout prediction generation
+* Initial prediction-error analysis
+* Baseline model artifact generation
+
+### Current Outputs
+
+* `data/processed/tabular_features.csv`
+* `data/processed/week-2/X_train.csv`
+* `data/processed/week-2/X_test.csv`
+* `data/processed/week-2/y_train.csv`
+* `data/processed/week-2/y_test.csv`
+* `data/processed/week-2/linear_regression_features.csv`
+* `models/linear_regression_baseline.pkl`
 
 ### Next Phase
 
-The next stage focuses on establishing the traditional machine-learning benchmark using Linear Regression and XGBoost Regression, followed by RMSE and MAPE evaluation.
+The next stage focuses on **XGBoost Regression**, which will provide a stronger traditional machine-learning benchmark before the project moves to spatial embeddings and graph-based valuation models.
 
 ---
 
 # Future Goal
 
-Build an end-to-end Geospatial Real Estate Valuation System capable of leveraging neighborhood relationships through Graph Neural Networks to outperform traditional machine learning valuation models.
+Build an end-to-end **Geospatial Real Estate Valuation System** that combines conventional property attributes with neighborhood relationships and spatial dependencies.
+
+The final system will aim to demonstrate that spatially aware models can outperform traditional tabular machine-learning approaches for property valuation.
