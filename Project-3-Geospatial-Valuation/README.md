@@ -61,16 +61,33 @@ Project-3-Geospatial-Valuation
 │   │   └── kc_house_data.csv
 │   │
 │   └── processed
+│       ├── week-2
+│       │   ├── predictions
+│       │   │   └── xgboost_predictions.csv
+│       │   │
+│       │   ├── baseline_model_comparison.csv
+│       │   ├── linear_regression_features.csv
+│       │   ├── X_test.csv
+│       │   ├── X_train.csv
+│       │   ├── y_test.csv
+│       │   └── y_train.csv
+│       │   
 │       ├── clean_house_data.csv
 │       ├── clean_houses.geojson
 │       ├── spatial_features.csv
 │       └── tabular_features.csv
 │
+├── models
+│   ├── linear_regression_baseline.pkl
+│   └── xgboost_baseline.pkl
+│
 ├── notebooks
 │   ├── 01_data_acquisition.ipynb
 │   ├── 02_spatial_feature_engineering.ipynb
 │   ├── 03_geospatial_visualization.ipynb
-│   └── 04_tabular_feature_engineering.ipynb
+│   ├── 04_tabular_feature_engineering.ipynb
+│   ├── 05_linear_regression_baseline.ipynb
+│   └── 06_xgboost_baseline.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -86,7 +103,9 @@ Project-3-Geospatial-Valuation
 │   │   └── day5_week1_validation.md
 │   │
 │   └── week-2
-│       └── day1_tabular_feature_engineering.md
+│       ├── day1_tabular_feature_engineering.md
+│       ├── day2_linear_regression_baseline.md
+│       └── day3_xgboost_baseline.md
 │
 ├── requirements.txt
 └── README.md
@@ -194,48 +213,56 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 
 ---
 
+### ✅ Day 3 – XGBoost Regression Baseline
+
+* Loaded the same train/test split used for the Linear Regression baseline.
+* Validated feature consistency and missing values.
+* Implemented an XGBoost Regressor for nonlinear property-price prediction.
+* Trained the XGBoost baseline model using the Week 2 tabular features.
+* Generated holdout price predictions.
+* Calculated initial RMSE and MAPE values.
+* Compared XGBoost performance with the Linear Regression baseline.
+* Analyzed XGBoost feature importance.
+* Saved the trained model as `xgboost_baseline.pkl`.
+* Saved XGBoost predictions and baseline model comparison results.
+
+---
+
 ## 📌 Week 2 Progress
 
 Week 2 is currently in progress.
 
-The project has now established the **traditional tabular machine-learning foundation** required for property-price valuation.
+The project has now established two traditional machine-learning benchmarks:
 
-The current workflow is:
+**Linear Regression → XGBoost Regression**
 
-**Tabular Feature Engineering → Train/Test Split → Linear Regression Baseline → XGBoost Baseline → Model Evaluation**
+The Linear Regression model provides a simple interpretable baseline, while XGBoost provides a stronger nonlinear tabular benchmark capable of modeling complex relationships between property characteristics and house prices.
 
-The Linear Regression model serves as the first benchmark against which the stronger XGBoost model and later spatial/graph-based models will be compared.
-
----
-
-## 🚀 Upcoming Work
-
-### ⏳ Day 3 – XGBoost Regression
-
-* Train an XGBoost Regressor using the prepared baseline features.
-* Generate property-price predictions on the holdout dataset.
-* Compare XGBoost predictions against the Linear Regression baseline.
-* Save the trained XGBoost model.
+The baseline models will serve as the reference point for the spatial and graph-based models introduced during Weeks 3 and 4.
 
 ---
+
+# 🚀 Upcoming Work
+
+## 🔄 Week 2 – Baseline Machine Learning
 
 ### ⏳ Day 4 – Model Evaluation and Error Analysis
 
-* Calculate RMSE for the baseline models.
-* Calculate MAPE for the baseline models.
-* Compare Linear Regression and XGBoost performance.
+* Calculate final RMSE and MAPE for Linear Regression and XGBoost.
+* Compare baseline model performance.
 * Analyze prediction errors.
-* Investigate limitations of traditional tabular models in spatially complex and rapidly changing neighborhoods.
+* Identify properties or price ranges where the models perform poorly.
+* Analyze limitations of traditional tabular models in spatially complex neighborhoods.
 
 ---
 
 ### ⏳ Day 5 – Week 2 Validation
 
 * Validate the complete Week 2 machine-learning pipeline.
-* Review baseline model outputs.
 * Finalize Linear Regression and XGBoost comparison.
+* Review model artifacts and prediction outputs.
 * Document Week 2 findings.
-* Prepare the baseline results for spatial and graph-based modeling in Week 3.
+* Prepare baseline results for spatial and graph-based modeling in Week 3.
 
 ---
 
@@ -256,7 +283,7 @@ The Linear Regression model serves as the first benchmark against which the stro
 * Implement attention-based spatial modeling.
 * Aggregate information from neighboring properties.
 * Compare GNN performance against the XGBoost baseline.
-* Analyze the improvement in MAPE.
+* Analyze improvement in MAPE.
 * Develop the Streamlit valuation dashboard.
 * Visualize predicted property prices on interactive maps.
 * Display influential neighboring properties.
@@ -302,6 +329,16 @@ The Linear Regression model serves as the first benchmark against which the stro
 * Initial prediction-error analysis
 * Baseline model artifact generation
 
+#### Week 2 – Day 3
+
+* XGBoost Regression baseline
+* Nonlinear property-price modeling
+* Holdout prediction generation
+* Initial RMSE and MAPE calculation
+* Linear Regression vs XGBoost comparison
+* XGBoost feature importance analysis
+* XGBoost model artifact generation
+
 ### Current Outputs
 
 * `data/processed/tabular_features.csv`
@@ -310,11 +347,16 @@ The Linear Regression model serves as the first benchmark against which the stro
 * `data/processed/week-2/y_train.csv`
 * `data/processed/week-2/y_test.csv`
 * `data/processed/week-2/linear_regression_features.csv`
+* `data/processed/week-2/baseline_model_comparison.csv`
+* `data/processed/week-2/predictions/xgboost_predictions.csv`
 * `models/linear_regression_baseline.pkl`
+* `models/xgboost_baseline.pkl`
 
 ### Next Phase
 
-The next stage focuses on **XGBoost Regression**, which will provide a stronger traditional machine-learning benchmark before the project moves to spatial embeddings and graph-based valuation models.
+The next stage focuses on **formal baseline model evaluation and error analysis** using RMSE and MAPE.
+
+The finalized Linear Regression and XGBoost benchmarks will then be used as the traditional machine-learning reference for the spatial embedding and Graph Neural Network stages.
 
 ---
 
