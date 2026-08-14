@@ -92,7 +92,8 @@ Project-3-Geospatial-Valuation
 │   ├── 04_tabular_feature_engineering.ipynb
 │   ├── 05_linear_regression_baseline.ipynb
 │   ├── 06_xgboost_baseline.ipynb
-│   └── 07_model_evaluation.ipynb
+│   ├── 07_model_evaluation.ipynb
+│   └── 08_week2_validation.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -105,13 +106,16 @@ Project-3-Geospatial-Valuation
 │   │   ├── day2_geospatial_preprocessing.md
 │   │   ├── day3_spatial_feature_engineering.md
 │   │   ├── day4_geospatial_visualizations.md
-│   │   └── day5_week1_validation.md
+│   │   ├── day5_week1_validation.md
+│   │   └── week1_summary.md
 │   │
 │   └── week-2
 │       ├── day1_tabular_feature_engineering.md
 │       ├── day2_linear_regression_baseline.md
 │       ├── day3_xgboost_baseline.md
-│       └── day4_model_evaluation.md
+│       ├── day4_model_evaluation.md
+│       ├── day5_week2_validation.md
+│       └── wek2_summary.md
 │
 ├── requirements.txt
 └── README.md
@@ -190,7 +194,7 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 
 ---
 
-## 🔄 Week 2 – Baseline Machine Learning
+## ✅ Week 2 – Baseline Machine Learning
 
 ### ✅ Day 1 – Standard Tabular Feature Engineering
 
@@ -241,49 +245,40 @@ The resulting spatial dataset will be used for baseline machine learning and pro
 * Analyzed XGBoost errors across property-price ranges.
 * Identified XGBoost as the stronger traditional ML baseline.
 
-### 📊 Week 2 Day 4 Results
-
-| Model             |            RMSE |       MAPE |            MAE |         R² |
-| ----------------- | --------------: | ---------: | -------------: | ---------: |
-| Linear Regression |     $129,959.74 |     23.50% |     $99,623.90 |     0.7274 |
-| **XGBoost**       | **$103,398.17** | **17.31%** | **$75,525.97** | **0.8274** |
-
-XGBoost achieved:
-
-* **20.44% lower RMSE**
-* **26.34% lower MAPE**
-* Higher R² than Linear Regression
-
-Therefore, XGBoost is established as the primary traditional ML benchmark for the spatial modeling stages.
-
 ---
 
-## 📌 Week 2 Progress
+### ✅ Day 5 – Final Validation and Week 2 Completion
 
-Week 2 is currently in progress.
+- Validated all Week 2 datasets and model artifacts.
+- Verified the 80/20 training and holdout split.
+- Checked missing and infinite values.
+- Reloaded and validated Linear Regression and XGBoost models.
+- Regenerated and verified holdout predictions.
+- Revalidated RMSE, MAPE, MAE and R² results.
+- Verified prediction-error and price-range analysis outputs.
+- Finalized Week 2 documentation.
+- Confirmed XGBoost as the traditional ML benchmark.
 
-The project has now established and evaluated the traditional machine-learning benchmark:
+### 📊 Week 2 Final Benchmark
 
-**Tabular Feature Engineering → Linear Regression → XGBoost → RMSE/MAPE Evaluation → Error Analysis**
+| Model | RMSE | MAPE | MAE | R² |
+|---|---:|---:|---:|---:|
+| Linear Regression | $129,959.74 | 23.50% | $99,623.90 | 0.7274 |
+| **XGBoost** | **$103,398.17** | **17.31%** | **$75,525.97** | **0.8274** |
 
-The XGBoost model achieved a MAPE of **17.31%** and will serve as the primary benchmark for evaluating the improvement obtained from spatial embeddings and graph-based models.
+XGBoost achieved a **20.44% improvement in RMSE** and a **26.34% improvement in MAPE** compared with Linear Regression.
+
+### 📌 Week 2 Outcome
+
+Week 2 has been successfully completed.
+
+The traditional machine-learning benchmark has been established using XGBoost Regression with a final **MAPE of 17.31%**.
+
+The XGBoost model will serve as the benchmark for evaluating the spatial and graph-based models developed during the later phases of the project.
 
 ---
 
 # 🚀 Upcoming Work
-
-## 🔄 Week 2 – Baseline Machine Learning
-
-### ⏳ Day 5 – Week 2 Validation
-
-* Validate the complete Week 2 ML pipeline.
-* Review Linear Regression and XGBoost artifacts.
-* Finalize baseline model comparison.
-* Review prediction and error-analysis outputs.
-* Document Week 2 findings.
-* Prepare the project for spatial graph construction.
-
----
 
 ## ⏳ Week 3 – Spatial Embeddings & Graph Construction
 
@@ -314,7 +309,9 @@ The XGBoost model achieved a MAPE of **17.31%** and will serve as the primary be
 
 **Week 1 – Completed ✅**
 
-**Week 2 – In Progress 🔄**
+**Week 2 – Completed ✅**
+
+**Week 3 – Pending ⏳**
 
 ### Completed Work
 
@@ -369,6 +366,19 @@ The XGBoost model achieved a MAPE of **17.31%** and will serve as the primary be
 - Price-range error analysis
 - XGBoost benchmark selection
 
+#### Week 2 – Day 5
+
+- Final Week 2 pipeline validation
+- Dataset and model artifact validation
+- 80/20 train/test split verification
+- Missing and infinite value checks
+- Linear Regression and XGBoost model validation
+- Holdout prediction verification
+- RMSE, MAPE, MAE and R² revalidation
+- Prediction-error and price-range analysis validation
+- XGBoost benchmark confirmation
+- Week 2 documentation finalization
+
 ### Current Outputs
 
 * `data/processed/tabular_features.csv`
@@ -388,30 +398,19 @@ The XGBoost model achieved a MAPE of **17.31%** and will serve as the primary be
 
 ### Next Phase
 
-The immediate next step is **Week 2 Day 5 – Final Validation and Documentation**.
+The project is now ready for **Week 3 – Spatial Embeddings and Graph Construction**.
 
-The Week 2 baseline pipeline will be reviewed and finalized, including:
+The next phase will:
 
-- Linear Regression baseline validation.
-- XGBoost baseline validation.
-- RMSE and MAPE result verification.
-- Prediction and price-range error analysis review.
-- Finalization of Week 2 documentation.
-- Validation of all generated model artifacts and datasets.
+- Construct a K-Nearest Neighbor (KNN) graph.
+- Represent each property as a graph node.
+- Connect geographically nearby properties using spatial distance.
+- Prepare graph edges and node features.
+- Generate spatial embeddings representing neighborhood context.
+- Prepare the graph dataset for Graph Neural Network modeling.
+- Analyze neighborhood connectivity.
 
-After Week 2 is completed, the project will move to **Week 3 – Spatial Embeddings and Graph Construction**.
-
-Week 3 will introduce spatial dependencies by:
-
-- Constructing a K-Nearest Neighbor (KNN) graph.
-- Representing each property as a graph node.
-- Connecting geographically nearby properties through graph edges.
-- Preparing node features using property and spatial information.
-- Generating spatial embeddings.
-- Preparing the graph dataset for Graph Neural Network modeling.
-- Analyzing neighborhood connectivity.
-
-The finalized **XGBoost MAPE of 17.31%** will serve as the traditional machine-learning benchmark against which the spatial and graph-based models will be evaluated.
+The Week 2 XGBoost model, with a final MAPE of **17.31%**, will serve as the traditional machine-learning benchmark for evaluating the effectiveness of the upcoming spatial modeling approach.
 
 ---
 
