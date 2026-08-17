@@ -75,7 +75,12 @@ Project-3-Geospatial-Valuation
 │       │   ├── X_train.csv
 │       │   ├── y_test.csv
 │       │   └── y_train.csv
-│       │   
+│       │
+│       ├── week-3
+│       │   ├── graph_node_features.csv
+│       │   ├── graph_targets.csv
+│       │   └── knn_graph_edges.csv
+│       │
 │       ├── clean_house_data.csv
 │       ├── clean_houses.geojson
 │       ├── spatial_features.csv
@@ -93,7 +98,8 @@ Project-3-Geospatial-Valuation
 │   ├── 05_linear_regression_baseline.ipynb
 │   ├── 06_xgboost_baseline.ipynb
 │   ├── 07_model_evaluation.ipynb
-│   └── 08_week2_validation.ipynb
+│   ├── 08_week2_validation.ipynb
+│   └── 09_knn_graph_construction.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -109,13 +115,16 @@ Project-3-Geospatial-Valuation
 │   │   ├── day5_week1_validation.md
 │   │   └── week1_summary.md
 │   │
-│   └── week-2
-│       ├── day1_tabular_feature_engineering.md
-│       ├── day2_linear_regression_baseline.md
-│       ├── day3_xgboost_baseline.md
-│       ├── day4_model_evaluation.md
-│       ├── day5_week2_validation.md
-│       └── wek2_summary.md
+│   ├── week-2
+│   │   ├── day1_tabular_feature_engineering.md
+│   │   ├── day2_linear_regression_baseline.md
+│   │   ├── day3_xgboost_baseline.md
+│   │   ├── day4_model_evaluation.md
+│   │   ├── day5_week2_validation.md
+│   │   └── week2_summary.md
+│   │
+│   └── week-3
+│       └── day1_knn_graph_construction.md
 │
 ├── requirements.txt
 └── README.md
@@ -278,30 +287,93 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 
 ---
 
+## 🔄 Week 3 – Spatial Embeddings and Graph Construction
+
+### ✅ Day 1 – KNN Graph Construction
+
+- Loaded and validated the spatially enriched housing dataset.
+- Created unique `node_id` values for all properties.
+- Implemented K-Nearest Neighbor graph construction with `K = 5`.
+- Used BallTree with Haversine distance for geographic neighbor search.
+- Calculated geographic distances in kilometers.
+- Constructed directed KNN graph edges.
+- Handled duplicate geographic coordinates.
+- Prevented self-loops during graph construction.
+- Separated property price from graph node features to prevent target leakage.
+- Validated the final graph structure.
+
+### 📊 Week 3 Day 1 Results
+
+| Parameter | Result |
+|---|---:|
+| Graph Nodes | 21,613 |
+| K Nearest Neighbors | 5 |
+| Directed Edges | 108,065 |
+| Self-Loops | 0 |
+| Distance Metric | Haversine |
+| Neighbor Search | BallTree |
+| Validation | Passed ✅ |
+
+### 📁 Week 3 Day 1 Outputs
+
+- `data/processed/week-3/graph_node_features.csv`
+- `data/processed/week-3/graph_targets.csv`
+- `data/processed/week-3/knn_graph_edges.csv`
+- `notebooks/09_knn_graph_construction.ipynb`
+
+### 📌 Week 3 Progress
+
+Week 3 is currently in progress.
+
+Day 1 successfully established the KNN-based spatial graph, with each property represented as a graph node and connected to its five nearest geographic neighbors.
+
+The graph structure and node datasets are now ready for neighborhood connectivity analysis and spatial embedding generation.
+
+---
+
 # 🚀 Upcoming Work
 
-## ⏳ Week 3 – Spatial Embeddings & Graph Construction
+## 🔄 Week 3 – Spatial Embeddings & Graph Construction
 
-* Construct a K-Nearest Neighbor (KNN) graph.
-* Represent each property as a graph node.
-* Connect properties using geographic proximity.
-* Generate spatial embeddings.
-* Prepare the graph dataset for Graph Neural Network modeling.
-* Analyze neighborhood connectivity.
+### ⏳ Day 2 – Graph Validation and Neighborhood Analysis
+
+- Validate graph structure.
+- Analyze node connectivity.
+- Analyze neighborhood distance statistics.
+- Generate graph-level statistics.
+
+### ⏳ Day 3 – Spatial Embedding Generation
+
+- Generate spatial embeddings.
+- Represent localized neighborhood context numerically.
+- Analyze embedding features.
+
+### ⏳ Day 4 – Graph Dataset Preparation
+
+- Combine graph structure with node features and spatial embeddings.
+- Prepare the dataset for GNN modeling.
+- Validate graph feature dimensions.
+
+### ⏳ Day 5 – Week 3 Validation
+
+- Validate the complete Week 3 pipeline.
+- Verify graph, embedding and target datasets.
+- Finalize Week 3 documentation.
+- Prepare the project for GNN development.
 
 ---
 
 ## ⏳ Week 4 – Graph Neural Network & Deployment
 
-* Train a Graph Neural Network (GNN).
-* Implement attention-based spatial modeling.
-* Aggregate information from neighboring properties.
-* Compare GNN performance against the XGBoost baseline.
-* Analyze improvement in MAPE.
-* Develop the Streamlit valuation dashboard.
-* Visualize predicted property prices on interactive maps.
-* Display influential neighboring properties.
-* Complete final GitHub documentation and deployment.
+- Train a Graph Neural Network (GNN).
+- Implement attention-based spatial modeling.
+- Aggregate information from neighboring properties.
+- Compare GNN performance against the XGBoost baseline.
+- Analyze improvement in MAPE.
+- Develop the Streamlit valuation dashboard.
+- Visualize predicted property prices on interactive maps.
+- Display influential neighboring properties.
+- Complete final GitHub documentation and deployment.
 
 ---
 
@@ -311,106 +383,94 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 
 **Week 2 – Completed ✅**
 
-**Week 3 – Pending ⏳**
+**Week 3 – In Progress 🔄**
 
 ### Completed Work
 
 #### Week 1
 
-* Dataset acquisition and exploration
-* Data cleaning and preprocessing
-* Spatial feature engineering
-* BallTree-based neighbor analysis
-* Haversine distance calculation
-* Neighborhood pricing features
-* Interactive geospatial visualization
-* Week 1 validation and documentation
+- Dataset acquisition and exploration
+- Data cleaning and preprocessing
+- Spatial feature engineering
+- BallTree-based neighbor analysis
+- Haversine distance calculation
+- Neighborhood pricing features
+- Interactive geospatial visualization
+- Week 1 validation and documentation
 
-#### Week 2 – Day 1
+#### Week 2
 
-* Standard tabular feature engineering
-* House-age feature
-* Renovation-related features
-* Distance-to-city-center feature
-* Property-level ratio features
-* ML-ready dataset preparation
-
-#### Week 2 – Day 2
-
-* Baseline feature selection
-* 80/20 train/test split
-* Linear Regression baseline
-* Feature standardization
-* Holdout prediction generation
-* Initial prediction-error analysis
-* Baseline model artifact generation
-
-#### Week 2 – Day 3
-
-* XGBoost Regression baseline
-* Nonlinear property-price modeling
-* Holdout prediction generation
-* Initial RMSE and MAPE calculation
-* Linear Regression vs XGBoost comparison
-* XGBoost feature importance analysis
-* XGBoost model artifact generation
-
-#### Week 2 – Day 4
-
-- Formal baseline evaluation
-- RMSE calculation
-- MAPE calculation
-- MAE and R² calculation
-- Linear Regression vs XGBoost comparison
-- Prediction error analysis
+- Standard tabular feature engineering
+- House-age and renovation features
+- Distance-to-city-center feature
+- Property-level ratio features
+- Train/test split
+- Linear Regression baseline
+- XGBoost Regression baseline
+- RMSE, MAPE, MAE and R² evaluation
+- Prediction-error analysis
 - Price-range error analysis
 - XGBoost benchmark selection
+- Week 2 validation and documentation
 
-#### Week 2 – Day 5
+#### Week 3 – Day 1
 
-- Final Week 2 pipeline validation
-- Dataset and model artifact validation
-- 80/20 train/test split verification
-- Missing and infinite value checks
-- Linear Regression and XGBoost model validation
-- Holdout prediction verification
-- RMSE, MAPE, MAE and R² revalidation
-- Prediction-error and price-range analysis validation
-- XGBoost benchmark confirmation
-- Week 2 documentation finalization
+- Created graph nodes for all properties.
+- Assigned unique `node_id` values.
+- Implemented KNN graph construction with `K = 5`.
+- Used BallTree with Haversine distance.
+- Calculated geographic distances in kilometers.
+- Constructed directed KNN graph edges.
+- Handled duplicate geographic coordinates.
+- Prevented self-loops.
+- Separated property price from graph node features to prevent target leakage.
+- Validated the final graph structure.
+
+### Week 3 Day 1 Results
+
+- **Nodes:** 21,613
+- **K Neighbors:** 5
+- **Directed Edges:** 108,065
+- **Self-Loops:** 0
+- **Distance Metric:** Haversine
+- **Neighbor Search:** BallTree
+- **Graph Validation:** Passed ✅
 
 ### Current Outputs
 
-* `data/processed/tabular_features.csv`
-* `data/processed/week-2/X_train.csv`
-* `data/processed/week-2/X_test.csv`
-* `data/processed/week-2/y_train.csv`
-* `data/processed/week-2/y_test.csv`
-* `data/processed/week-2/linear_regression_features.csv`
-* `data/processed/week-2/baseline_model_comparison.csv`
-* `data/processed/week-2/predictions/xgboost_predictions.csv`
-* `models/linear_regression_baseline.pkl`
-* `models/xgboost_baseline.pkl`
-* `data/processed/week-2/model_evaluation.csv`
-* `data/processed/week-2/prediction_error_analysis.csv`
-* `data/processed/week-2/price_range_error_analysis.csv`
-* `data/processed/week-2/predictions/model_prediction_comparison.csv`
+#### Week 2
+
+- `data/processed/tabular_features.csv`
+- `data/processed/week-2/X_train.csv`
+- `data/processed/week-2/X_test.csv`
+- `data/processed/week-2/y_train.csv`
+- `data/processed/week-2/y_test.csv`
+- `data/processed/week-2/baseline_model_comparison.csv`
+- `data/processed/week-2/model_evaluation.csv`
+- `data/processed/week-2/prediction_error_analysis.csv`
+- `data/processed/week-2/price_range_error_analysis.csv`
+- `data/processed/week-2/predictions/model_prediction_comparison.csv`
+- `models/linear_regression_baseline.pkl`
+- `models/xgboost_baseline.pkl`
+
+#### Week 3
+
+- `data/processed/week-3/graph_node_features.csv`
+- `data/processed/week-3/graph_targets.csv`
+- `data/processed/week-3/knn_graph_edges.csv`
 
 ### Next Phase
 
-The project is now ready for **Week 3 – Spatial Embeddings and Graph Construction**.
+The project is currently progressing through **Week 3 – Spatial Embeddings and Graph Construction**.
 
-The next phase will:
+The next stage will focus on:
 
-- Construct a K-Nearest Neighbor (KNN) graph.
-- Represent each property as a graph node.
-- Connect geographically nearby properties using spatial distance.
-- Prepare graph edges and node features.
-- Generate spatial embeddings representing neighborhood context.
-- Prepare the graph dataset for Graph Neural Network modeling.
-- Analyze neighborhood connectivity.
+- Graph validation and neighborhood connectivity analysis.
+- Graph-level statistics and distance analysis.
+- Generation of spatial embeddings representing local neighborhood context.
+- Preparation of the final graph dataset for GNN modeling.
 
-The Week 2 XGBoost model, with a final MAPE of **17.31%**, will serve as the traditional machine-learning benchmark for evaluating the effectiveness of the upcoming spatial modeling approach.
+The Week 2 XGBoost model, with a final **MAPE of 17.31%**, will serve as the traditional machine-learning benchmark for evaluating the spatial and graph-based models.
 
 ---
 
