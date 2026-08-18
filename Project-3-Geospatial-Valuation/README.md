@@ -77,7 +77,9 @@ Project-3-Geospatial-Valuation
 │       │   └── y_train.csv
 │       │
 │       ├── week-3
+│       │   ├── graph_distance_statistics.csv
 │       │   ├── graph_node_features.csv
+│       │   ├── graph_node_statistics.csv
 │       │   ├── graph_targets.csv
 │       │   └── knn_graph_edges.csv
 │       │
@@ -99,7 +101,8 @@ Project-3-Geospatial-Valuation
 │   ├── 06_xgboost_baseline.ipynb
 │   ├── 07_model_evaluation.ipynb
 │   ├── 08_week2_validation.ipynb
-│   └── 09_knn_graph_construction.ipynb
+│   ├── 09_knn_graph_construction.ipynb
+│   └── 10_graph_validation_analysis.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -124,7 +127,13 @@ Project-3-Geospatial-Valuation
 │   │   └── week2_summary.md
 │   │
 │   └── week-3
-│       └── day1_knn_graph_construction.md
+│       ├── visualizations
+│       │   ├── graph_node_sample.html
+│       │   ├── knn_distance_distribution.png
+│       │   └── node_degree_distribution.png
+│       │
+│       ├── day1_knn_graph_construction.md
+│       └── day2_graph_validation_analysis.md
 │
 ├── requirements.txt
 └── README.md
@@ -287,47 +296,72 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 
 ---
 
+---
+
 ## 🔄 Week 3 – Spatial Embeddings and Graph Construction
 
 ### ✅ Day 1 – KNN Graph Construction
 
 - Loaded and validated the spatially enriched housing dataset.
 - Created unique `node_id` values for all properties.
-- Implemented K-Nearest Neighbor graph construction with `K = 5`.
-- Used BallTree with Haversine distance for geographic neighbor search.
+- Implemented KNN graph construction with `K = 5`.
+- Used BallTree with Haversine distance.
 - Calculated geographic distances in kilometers.
 - Constructed directed KNN graph edges.
 - Handled duplicate geographic coordinates.
-- Prevented self-loops during graph construction.
+- Prevented self-loops.
 - Separated property price from graph node features to prevent target leakage.
 - Validated the final graph structure.
 
-### 📊 Week 3 Day 1 Results
+### 📊 Day 1 Results
 
 | Parameter | Result |
 |---|---:|
 | Graph Nodes | 21,613 |
-| K Nearest Neighbors | 5 |
+| K Neighbors | 5 |
 | Directed Edges | 108,065 |
 | Self-Loops | 0 |
 | Distance Metric | Haversine |
 | Neighbor Search | BallTree |
 | Validation | Passed ✅ |
 
-### 📁 Week 3 Day 1 Outputs
+---
 
-- `data/processed/week-3/graph_node_features.csv`
-- `data/processed/week-3/graph_targets.csv`
-- `data/processed/week-3/knn_graph_edges.csv`
-- `notebooks/09_knn_graph_construction.ipynb`
+### ✅ Day 2 – Graph Validation and Neighborhood Analysis
+
+- Loaded and validated the KNN graph datasets.
+- Validated source and target node IDs.
+- Checked for self-loops and duplicate edges.
+- Verified geographic distance values.
+- Confirmed that each property has 5 outgoing KNN connections.
+- Calculated incoming and outgoing node degree statistics.
+- Analyzed neighborhood connectivity.
+- Calculated KNN distance statistics.
+- Generated graph degree and distance distribution visualizations.
+- Created an interactive HTML visualization of sampled graph nodes.
+- Saved graph-level statistics for further analysis.
+
+### 📊 Day 2 Validation Results
+
+| Check | Result |
+|---|---:|
+| Nodes | 21,613 |
+| Edges | 108,065 |
+| Self-Loops | 0 |
+| Invalid Node IDs | 0 |
+| Duplicate Edges | 0 |
+| Missing Distances | 0 |
+| Negative Distances | 0 |
+| Nodes Without 5 Outgoing Edges | 0 |
+| Graph Validation | Passed ✅ |
 
 ### 📌 Week 3 Progress
 
 Week 3 is currently in progress.
 
-Day 1 successfully established the KNN-based spatial graph, with each property represented as a graph node and connected to its five nearest geographic neighbors.
+The KNN spatial graph has been successfully constructed and validated. The graph now provides a reliable representation of geographic neighborhood relationships between properties.
 
-The graph structure and node datasets are now ready for neighborhood connectivity analysis and spatial embedding generation.
+The validated graph is ready for spatial embedding generation in Day 3.
 
 ---
 
@@ -335,29 +369,25 @@ The graph structure and node datasets are now ready for neighborhood connectivit
 
 ## 🔄 Week 3 – Spatial Embeddings & Graph Construction
 
-### ⏳ Day 2 – Graph Validation and Neighborhood Analysis
-
-- Validate graph structure.
-- Analyze node connectivity.
-- Analyze neighborhood distance statistics.
-- Generate graph-level statistics.
-
 ### ⏳ Day 3 – Spatial Embedding Generation
 
 - Generate spatial embeddings.
 - Represent localized neighborhood context numerically.
-- Analyze embedding features.
+- Incorporate geographic and neighborhood information.
+- Analyze the generated spatial representations.
 
 ### ⏳ Day 4 – Graph Dataset Preparation
 
 - Combine graph structure with node features and spatial embeddings.
-- Prepare the dataset for GNN modeling.
+- Prepare the final graph dataset for GNN modeling.
 - Validate graph feature dimensions.
+- Prepare graph data for the Week 4 GNN pipeline.
 
 ### ⏳ Day 5 – Week 3 Validation
 
-- Validate the complete Week 3 pipeline.
+- Validate the complete Week 3 graph pipeline.
 - Verify graph, embedding and target datasets.
+- Review spatial embedding quality.
 - Finalize Week 3 documentation.
 - Prepare the project for GNN development.
 
@@ -415,26 +445,27 @@ The graph structure and node datasets are now ready for neighborhood connectivit
 
 #### Week 3 – Day 1
 
-- Created graph nodes for all properties.
-- Assigned unique `node_id` values.
-- Implemented KNN graph construction with `K = 5`.
-- Used BallTree with Haversine distance.
-- Calculated geographic distances in kilometers.
-- Constructed directed KNN graph edges.
-- Handled duplicate geographic coordinates.
-- Prevented self-loops.
-- Separated property price from graph node features to prevent target leakage.
-- Validated the final graph structure.
+- KNN graph construction
+- Unique graph node generation
+- BallTree-based geographic neighbor search
+- Haversine distance calculation
+- Directed graph edge construction
+- Duplicate-coordinate handling
+- Self-loop prevention
+- Target leakage prevention
 
-### Week 3 Day 1 Results
+#### Week 3 – Day 2
 
-- **Nodes:** 21,613
-- **K Neighbors:** 5
-- **Directed Edges:** 108,065
-- **Self-Loops:** 0
-- **Distance Metric:** Haversine
-- **Neighbor Search:** BallTree
-- **Graph Validation:** Passed ✅
+- Graph integrity validation
+- Node ID validation
+- Self-loop validation
+- Duplicate edge validation
+- KNN degree validation
+- Incoming and outgoing degree analysis
+- KNN distance analysis
+- Neighborhood connectivity analysis
+- Graph visualization
+- Graph statistics generation
 
 ### Current Outputs
 
@@ -458,20 +489,17 @@ The graph structure and node datasets are now ready for neighborhood connectivit
 - `data/processed/week-3/graph_node_features.csv`
 - `data/processed/week-3/graph_targets.csv`
 - `data/processed/week-3/knn_graph_edges.csv`
+- `data/processed/week-3/graph_node_statistics.csv`
+- `data/processed/week-3/graph_distance_statistics.csv`
+- `reports/week-3/visualizations/node_degree_distribution.png`
+- `reports/week-3/visualizations/knn_distance_distribution.png`
+- `reports/week-3/visualizations/graph_node_sample.html`
 
 ### Next Phase
 
-The project is currently progressing through **Week 3 – Spatial Embeddings and Graph Construction**.
+The next stage focuses on **spatial embedding generation**.
 
-The next stage will focus on:
-
-- Graph validation and neighborhood connectivity analysis.
-- Graph-level statistics and distance analysis.
-- Generation of spatial embeddings representing local neighborhood context.
-- Preparation of the final graph dataset for GNN modeling.
-
-The Week 2 XGBoost model, with a final **MAPE of 17.31%**, will serve as the traditional machine-learning benchmark for evaluating the spatial and graph-based models.
-
+The validated KNN graph will be used to mathematically represent localized neighborhood context and prepare the graph-based features required for the upcoming Graph Neural Network stage.
 ---
 
 # Future Goal
