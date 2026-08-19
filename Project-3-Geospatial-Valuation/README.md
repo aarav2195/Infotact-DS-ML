@@ -81,7 +81,8 @@ Project-3-Geospatial-Valuation
 │       │   ├── graph_node_features.csv
 │       │   ├── graph_node_statistics.csv
 │       │   ├── graph_targets.csv
-│       │   └── knn_graph_edges.csv
+│       │   ├── knn_graph_edges.csv
+│       │   └── spatial_embeddings.csv
 │       │
 │       ├── clean_house_data.csv
 │       ├── clean_houses.geojson
@@ -102,7 +103,8 @@ Project-3-Geospatial-Valuation
 │   ├── 07_model_evaluation.ipynb
 │   ├── 08_week2_validation.ipynb
 │   ├── 09_knn_graph_construction.ipynb
-│   └── 10_graph_validation_analysis.ipynb
+│   ├── 10_graph_validation_analysis.ipynb
+│   └── 11_spatial_embedding_generation.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -133,7 +135,8 @@ Project-3-Geospatial-Valuation
 │       │   └── node_degree_distribution.png
 │       │
 │       ├── day1_knn_graph_construction.md
-│       └── day2_graph_validation_analysis.md
+│       ├── day2_graph_validation_analysis.md
+│       └── day3_spatial_embedding_generation.md
 │
 ├── requirements.txt
 └── README.md
@@ -355,26 +358,46 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 | Nodes Without 5 Outgoing Edges | 0 |
 | Graph Validation | Passed ✅ |
 
+---
+
+### ✅ Day 3 – Spatial Embedding Generation
+
+- Loaded the validated Week 3 graph datasets.
+- Extracted and standardized latitude and longitude features.
+- Calculated KNN neighborhood distance statistics.
+- Calculated mean, median, minimum, maximum and standard deviation of neighbor distances.
+- Calculated neighborhood connectivity using the number of neighbors.
+- Standardized neighborhood-distance features.
+- Combined geographic and neighborhood information into numerical spatial embeddings.
+- Handled missing and infinite values.
+- Validated embedding dimensions and node IDs.
+- Saved the generated spatial embedding dataset.
+
+### 📊 Day 3 Results
+
+| Parameter | Result |
+|---|---:|
+| Nodes | 21,613 |
+| Embedding Dimensions | 8 |
+| Missing Values | 0 |
+| Duplicate Node IDs | 0 |
+| Validation | Passed ✅ |
+
+### 📁 Day 3 Output
+
+`data/processed/week-3/spatial_embeddings.csv`
+
 ### 📌 Week 3 Progress
 
-Week 3 is currently in progress.
+The spatial embedding generation stage has been successfully completed.
 
-The KNN spatial graph has been successfully constructed and validated. The graph now provides a reliable representation of geographic neighborhood relationships between properties.
-
-The validated graph is ready for spatial embedding generation in Day 3.
+The generated embeddings represent each property's geographic location and localized KNN neighborhood characteristics. These embeddings will be combined with the graph structure and node features during Day 4 to prepare the final graph dataset for GNN modeling.
 
 ---
 
 # 🚀 Upcoming Work
 
 ## 🔄 Week 3 – Spatial Embeddings & Graph Construction
-
-### ⏳ Day 3 – Spatial Embedding Generation
-
-- Generate spatial embeddings.
-- Represent localized neighborhood context numerically.
-- Incorporate geographic and neighborhood information.
-- Analyze the generated spatial representations.
 
 ### ⏳ Day 4 – Graph Dataset Preparation
 
@@ -467,6 +490,15 @@ The validated graph is ready for spatial embedding generation in Day 3.
 - Graph visualization
 - Graph statistics generation
 
+#### Week 3 – Day 3
+
+- Spatial coordinate standardization
+- KNN neighborhood distance statistics
+- Neighborhood connectivity features
+- Spatial embedding generation
+- Embedding validation
+- Missing-value and duplicate-node validation
+
 ### Current Outputs
 
 #### Week 2
@@ -494,12 +526,14 @@ The validated graph is ready for spatial embedding generation in Day 3.
 - `reports/week-3/visualizations/node_degree_distribution.png`
 - `reports/week-3/visualizations/knn_distance_distribution.png`
 - `reports/week-3/visualizations/graph_node_sample.html`
+- `data/processed/week-3/spatial_embeddings.csv`
 
 ### Next Phase
 
-The next stage focuses on **spatial embedding generation**.
+The next stage focuses on **Graph Dataset Preparation**.
 
-The validated KNN graph will be used to mathematically represent localized neighborhood context and prepare the graph-based features required for the upcoming Graph Neural Network stage.
+The validated graph structure, node features, target values, and generated spatial embeddings will be combined into a unified graph dataset for the upcoming GNN modeling stage.
+
 ---
 
 # Future Goal
