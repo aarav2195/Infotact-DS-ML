@@ -77,6 +77,9 @@ Project-3-Geospatial-Valuation
 │       │   └── y_train.csv
 │       │
 │       ├── week-3
+│       │   ├── final_graph_edges.csv
+│       │   ├── final_graph_nodes.csv
+│       │   ├── final_graph_targets.csv
 │       │   ├── graph_distance_statistics.csv
 │       │   ├── graph_node_features.csv
 │       │   ├── graph_node_statistics.csv
@@ -104,7 +107,8 @@ Project-3-Geospatial-Valuation
 │   ├── 08_week2_validation.ipynb
 │   ├── 09_knn_graph_construction.ipynb
 │   ├── 10_graph_validation_analysis.ipynb
-│   └── 11_spatial_embedding_generation.ipynb
+│   ├── 11_spatial_embedding_generation.ipynb
+│   └── 12_graph_dataset_preparation.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -136,7 +140,8 @@ Project-3-Geospatial-Valuation
 │       │
 │       ├── day1_knn_graph_construction.md
 │       ├── day2_graph_validation_analysis.md
-│       └── day3_spatial_embedding_generation.md
+│       ├── day3_spatial_embedding_generation.md
+│       └── day4_graph_dataset_preparation.md
 │
 ├── requirements.txt
 └── README.md
@@ -383,28 +388,52 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 | Duplicate Node IDs | 0 |
 | Validation | Passed ✅ |
 
-### 📁 Day 3 Output
+---
 
-`data/processed/week-3/spatial_embeddings.csv`
+### ✅ Day 4 – Graph Dataset Preparation
+
+- Loaded the validated graph structure, node features, spatial embeddings and target values.
+- Verified node, embedding and target ID consistency.
+- Merged node features with spatial embeddings.
+- Validated graph edge references and geographic distances.
+- Checked for self-loops and invalid node IDs.
+- Prevented target leakage from the node feature matrix.
+- Validated missing values and duplicate node IDs.
+- Verified KNN edge count and outgoing node degree.
+- Created separate final node, edge and target datasets.
+- Reloaded and validated the final graph datasets.
+
+### 📊 Day 4 Results
+
+| Parameter | Result |
+|---|---:|
+| Graph Nodes | 21,613 |
+| K Neighbors | 5 |
+| Graph Edges | 108,065 |
+| Node Features | 25 |
+| Self-Loops | 0 |
+| Invalid Node References | 0 |
+| Missing Values | 0 |
+| Duplicate Node IDs | 0 |
+| Validation | Passed ✅ |
+
+### 📁 Day 4 Outputs
+
+- `data/processed/week-3/final_graph_nodes.csv`
+- `data/processed/week-3/final_graph_edges.csv`
+- `data/processed/week-3/final_graph_targets.csv`
 
 ### 📌 Week 3 Progress
 
-The spatial embedding generation stage has been successfully completed.
+The unified graph dataset has been successfully prepared and validated.
 
-The generated embeddings represent each property's geographic location and localized KNN neighborhood characteristics. These embeddings will be combined with the graph structure and node features during Day 4 to prepare the final graph dataset for GNN modeling.
+The final dataset separates node features, graph connectivity and prediction targets, while incorporating the generated spatial embeddings. It is now ready for final Week 3 validation and subsequent GNN development in Week 4.
 
 ---
 
 # 🚀 Upcoming Work
 
 ## 🔄 Week 3 – Spatial Embeddings & Graph Construction
-
-### ⏳ Day 4 – Graph Dataset Preparation
-
-- Combine graph structure with node features and spatial embeddings.
-- Prepare the final graph dataset for GNN modeling.
-- Validate graph feature dimensions.
-- Prepare graph data for the Week 4 GNN pipeline.
 
 ### ⏳ Day 5 – Week 3 Validation
 
@@ -499,6 +528,16 @@ The generated embeddings represent each property's geographic location and local
 - Embedding validation
 - Missing-value and duplicate-node validation
 
+#### Week 3 – Day 4
+
+- Unified graph dataset preparation
+- Node feature and spatial embedding integration
+- Graph edge validation
+- Target alignment validation
+- Target leakage prevention
+- Final node, edge and target dataset generation
+- Final graph dataset validation
+
 ### Current Outputs
 
 #### Week 2
@@ -527,12 +566,17 @@ The generated embeddings represent each property's geographic location and local
 - `reports/week-3/visualizations/knn_distance_distribution.png`
 - `reports/week-3/visualizations/graph_node_sample.html`
 - `data/processed/week-3/spatial_embeddings.csv`
+- `data/processed/week-3/final_graph_nodes.csv`
+- `data/processed/week-3/final_graph_edges.csv`
+- `data/processed/week-3/final_graph_targets.csv`
 
 ### Next Phase
 
-The next stage focuses on **Graph Dataset Preparation**.
+The next stage is **Week 3 Day 5 – Final Validation**.
 
-The validated graph structure, node features, target values, and generated spatial embeddings will be combined into a unified graph dataset for the upcoming GNN modeling stage.
+The complete spatial graph pipeline will be validated, including the graph structure, spatial embeddings, node features, targets and final graph datasets.
+
+After Week 3 validation, the project will proceed to **Week 4 – Graph Neural Network development**, using the finalized graph dataset as the input for GNN modeling.
 
 ---
 
