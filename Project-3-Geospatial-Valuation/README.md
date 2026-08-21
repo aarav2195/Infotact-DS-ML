@@ -108,7 +108,8 @@ Project-3-Geospatial-Valuation
 │   ├── 09_knn_graph_construction.ipynb
 │   ├── 10_graph_validation_analysis.ipynb
 │   ├── 11_spatial_embedding_generation.ipynb
-│   └── 12_graph_dataset_preparation.ipynb
+│   ├── 12_graph_dataset_preparation.ipynb
+│   └── 13_week3_final_validation.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -141,7 +142,9 @@ Project-3-Geospatial-Valuation
 │       ├── day1_knn_graph_construction.md
 │       ├── day2_graph_validation_analysis.md
 │       ├── day3_spatial_embedding_generation.md
-│       └── day4_graph_dataset_preparation.md
+│       ├── day4_graph_dataset_preparation.md
+│       ├── day5_week3_final_validation.md
+│       └── week3_summary.md
 │
 ├── requirements.txt
 └── README.md
@@ -304,79 +307,36 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 
 ---
 
----
-
-## 🔄 Week 3 – Spatial Embeddings and Graph Construction
+## ✅ Week 3 – Spatial Embeddings and Graph Construction
 
 ### ✅ Day 1 – KNN Graph Construction
 
-- Loaded and validated the spatially enriched housing dataset.
-- Created unique `node_id` values for all properties.
-- Implemented KNN graph construction with `K = 5`.
-- Used BallTree with Haversine distance.
-- Calculated geographic distances in kilometers.
-- Constructed directed KNN graph edges.
-- Handled duplicate geographic coordinates.
-- Prevented self-loops.
-- Separated property price from graph node features to prevent target leakage.
-- Validated the final graph structure.
-
-### 📊 Day 1 Results
-
-| Parameter | Result |
-|---|---:|
-| Graph Nodes | 21,613 |
-| K Neighbors | 5 |
-| Directed Edges | 108,065 |
-| Self-Loops | 0 |
-| Distance Metric | Haversine |
-| Neighbor Search | BallTree |
-| Validation | Passed ✅ |
+- Converted properties into graph nodes using geographic coordinates.
+- Constructed K-nearest-neighbor relationships based on physical proximity.
+- Generated graph edges connecting each property to its nearest spatial neighbors.
+- Prepared node and edge datasets for graph analysis.
 
 ---
 
 ### ✅ Day 2 – Graph Validation and Neighborhood Analysis
 
-- Loaded and validated the KNN graph datasets.
-- Validated source and target node IDs.
-- Checked for self-loops and duplicate edges.
-- Verified geographic distance values.
-- Confirmed that each property has 5 outgoing KNN connections.
-- Calculated incoming and outgoing node degree statistics.
-- Analyzed neighborhood connectivity.
-- Calculated KNN distance statistics.
-- Generated graph degree and distance distribution visualizations.
-- Created an interactive HTML visualization of sampled graph nodes.
-- Saved graph-level statistics for further analysis.
-
-### 📊 Day 2 Validation Results
-
-| Check | Result |
-|---|---:|
-| Nodes | 21,613 |
-| Edges | 108,065 |
-| Self-Loops | 0 |
-| Invalid Node IDs | 0 |
-| Duplicate Edges | 0 |
-| Missing Distances | 0 |
-| Negative Distances | 0 |
-| Nodes Without 5 Outgoing Edges | 0 |
-| Graph Validation | Passed ✅ |
+- Validated graph node and edge relationships.
+- Checked node IDs and edge references.
+- Detected and handled self-loop issues.
+- Analyzed KNN neighborhood distances.
+- Generated neighborhood-level graph statistics.
+- Validated graph connectivity and spatial relationships.
 
 ---
 
 ### ✅ Day 3 – Spatial Embedding Generation
 
-- Loaded the validated Week 3 graph datasets.
-- Extracted and standardized latitude and longitude features.
+- Standardized latitude and longitude features.
 - Calculated KNN neighborhood distance statistics.
-- Calculated mean, median, minimum, maximum and standard deviation of neighbor distances.
-- Calculated neighborhood connectivity using the number of neighbors.
-- Standardized neighborhood-distance features.
-- Combined geographic and neighborhood information into numerical spatial embeddings.
-- Handled missing and infinite values.
-- Validated embedding dimensions and node IDs.
-- Saved the generated spatial embedding dataset.
+- Generated localized neighborhood features.
+- Created numerical spatial embeddings representing geographic and neighborhood context.
+- Validated embedding dimensions and node alignment.
+- Saved the spatial embedding dataset.
 
 ### 📊 Day 3 Results
 
@@ -392,16 +352,14 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 
 ### ✅ Day 4 – Graph Dataset Preparation
 
-- Loaded the validated graph structure, node features, spatial embeddings and target values.
-- Verified node, embedding and target ID consistency.
-- Merged node features with spatial embeddings.
-- Validated graph edge references and geographic distances.
+- Combined node features with spatial embeddings.
+- Validated node, embedding and target alignment.
+- Validated graph edge references and distances.
 - Checked for self-loops and invalid node IDs.
 - Prevented target leakage from the node feature matrix.
 - Validated missing values and duplicate node IDs.
-- Verified KNN edge count and outgoing node degree.
+- Verified KNN edge count and outgoing degree.
 - Created separate final node, edge and target datasets.
-- Reloaded and validated the final graph datasets.
 
 ### 📊 Day 4 Results
 
@@ -414,7 +372,6 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 | Self-Loops | 0 |
 | Invalid Node References | 0 |
 | Missing Values | 0 |
-| Duplicate Node IDs | 0 |
 | Validation | Passed ✅ |
 
 ### 📁 Day 4 Outputs
@@ -423,27 +380,55 @@ The XGBoost model will serve as the benchmark for evaluating the spatial and gra
 - `data/processed/week-3/final_graph_edges.csv`
 - `data/processed/week-3/final_graph_targets.csv`
 
-### 📌 Week 3 Progress
+---
 
-The unified graph dataset has been successfully prepared and validated.
+### ✅ Day 5 – Final Validation and Week 3 Completion
 
-The final dataset separates node features, graph connectivity and prediction targets, while incorporating the generated spatial embeddings. It is now ready for final Week 3 validation and subsequent GNN development in Week 4.
+- Validated the complete Week 3 graph pipeline.
+- Verified node, embedding and target ID alignment.
+- Validated KNN edge references and connectivity.
+- Confirmed absence of self-loops.
+- Validated edge distance values.
+- Validated node features and spatial embeddings.
+- Checked target alignment and target leakage.
+- Verified all required Week 3 output files.
+- Completed final graph dataset validation.
+- Finalized Week 3 documentation.
+
+### 📊 Week 3 Final Results
+
+| Parameter | Result |
+|---|---:|
+| Graph Nodes | 21,613 |
+| K Neighbors | 5 |
+| Graph Edges | 108,065 |
+| Node Features | 25 |
+| Spatial Embedding Dimensions | 8 |
+| Prediction Targets | 21,613 |
+| Self-Loops | 0 |
+| Invalid Edge References | 0 |
+| Missing Values | 0 |
+| Target Leakage | None |
+| Validation | Passed ✅ |
+
+### 📁 Week 3 Final Outputs
+
+- `data/processed/week-3/final_graph_nodes.csv`
+- `data/processed/week-3/final_graph_edges.csv`
+- `data/processed/week-3/final_graph_targets.csv`
+- `data/processed/week-3/spatial_embeddings.csv`
+
+### 📌 Week 3 Outcome
+
+Week 3 has been successfully completed.
+
+The project now contains a validated spatial graph representation of the housing dataset, including KNN-based geographic connectivity, node features, localized spatial embeddings and separate prediction targets.
+
+The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 
 ---
 
 # 🚀 Upcoming Work
-
-## 🔄 Week 3 – Spatial Embeddings & Graph Construction
-
-### ⏳ Day 5 – Week 3 Validation
-
-- Validate the complete Week 3 graph pipeline.
-- Verify graph, embedding and target datasets.
-- Review spatial embedding quality.
-- Finalize Week 3 documentation.
-- Prepare the project for GNN development.
-
----
 
 ## ⏳ Week 4 – Graph Neural Network & Deployment
 
@@ -465,7 +450,7 @@ The final dataset separates node features, graph connectivity and prediction tar
 
 **Week 2 – Completed ✅**
 
-**Week 3 – In Progress 🔄**
+**Week 3 – Completed ✅**
 
 ### Completed Work
 
@@ -495,48 +480,15 @@ The final dataset separates node features, graph connectivity and prediction tar
 - XGBoost benchmark selection
 - Week 2 validation and documentation
 
-#### Week 3 – Day 1
+### Week 3 – Completed ✅
 
-- KNN graph construction
-- Unique graph node generation
-- BallTree-based geographic neighbor search
-- Haversine distance calculation
-- Directed graph edge construction
-- Duplicate-coordinate handling
-- Self-loop prevention
-- Target leakage prevention
-
-#### Week 3 – Day 2
-
-- Graph integrity validation
-- Node ID validation
-- Self-loop validation
-- Duplicate edge validation
-- KNN degree validation
-- Incoming and outgoing degree analysis
-- KNN distance analysis
-- Neighborhood connectivity analysis
-- Graph visualization
-- Graph statistics generation
-
-#### Week 3 – Day 3
-
-- Spatial coordinate standardization
-- KNN neighborhood distance statistics
-- Neighborhood connectivity features
+- KNN spatial graph construction
+- Graph validation and neighborhood analysis
 - Spatial embedding generation
-- Embedding validation
-- Missing-value and duplicate-node validation
-
-#### Week 3 – Day 4
-
-- Unified graph dataset preparation
-- Node feature and spatial embedding integration
-- Graph edge validation
-- Target alignment validation
-- Target leakage prevention
-- Final node, edge and target dataset generation
-- Final graph dataset validation
+- Graph dataset preparation
+- Node, edge and target dataset generation
+- Final graph validation
+- GNN-ready spatial dataset preparation
 
 ### Current Outputs
 
@@ -572,11 +524,18 @@ The final dataset separates node features, graph connectivity and prediction tar
 
 ### Next Phase
 
-The next stage is **Week 3 Day 5 – Final Validation**.
+The next stage focuses on **Week 4 – Graph Neural Network Development**.
 
-The complete spatial graph pipeline will be validated, including the graph structure, spatial embeddings, node features, targets and final graph datasets.
+The finalized Week 3 graph dataset will be used to develop and train GNN models for spatially aware property-price prediction.
 
-After Week 3 validation, the project will proceed to **Week 4 – Graph Neural Network development**, using the finalized graph dataset as the input for GNN modeling.
+Planned work includes:
+
+- GNN architecture development.
+- Graph-based property-price prediction.
+- Attention-based spatial modeling.
+- Comparison with the XGBoost benchmark.
+- Model evaluation using RMSE, MAPE, MAE and R².
+- Interactive prediction visualization and deployment.
 
 ---
 
