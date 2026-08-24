@@ -10,3 +10,6 @@ folium
 streamlit
 networkx
 torch
+torchvision
+torchaudio
+torch-geometric

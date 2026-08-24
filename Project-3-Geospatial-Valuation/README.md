@@ -77,6 +77,9 @@ Project-3-Geospatial-Valuation
 │       │   └── y_train.csv
 │       │
 │       ├── week-3
+│       │   ├── gnn
+│       │   │   └── housing_graph_data.pt
+│       │   │
 │       │   ├── final_graph_edges.csv
 │       │   ├── final_graph_nodes.csv
 │       │   ├── final_graph_targets.csv
@@ -109,7 +112,8 @@ Project-3-Geospatial-Valuation
 │   ├── 10_graph_validation_analysis.ipynb
 │   ├── 11_spatial_embedding_generation.ipynb
 │   ├── 12_graph_dataset_preparation.ipynb
-│   └── 13_week3_final_validation.ipynb
+│   ├── 13_week3_final_validation.ipynb
+│   └── 14_gnn_data_preparation.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -133,18 +137,21 @@ Project-3-Geospatial-Valuation
 │   │   ├── day5_week2_validation.md
 │   │   └── week2_summary.md
 │   │
-│   └── week-3
-│       ├── visualizations
-│       │   ├── graph_node_sample.html
-│       │   ├── knn_distance_distribution.png
-│       │   └── node_degree_distribution.png
-│       │
-│       ├── day1_knn_graph_construction.md
-│       ├── day2_graph_validation_analysis.md
-│       ├── day3_spatial_embedding_generation.md
-│       ├── day4_graph_dataset_preparation.md
-│       ├── day5_week3_final_validation.md
-│       └── week3_summary.md
+│   ├── week-3
+│   │   ├── visualizations
+│   │   │   ├── graph_node_sample.html
+│   │   │   ├── knn_distance_distribution.png
+│   │   │   └── node_degree_distribution.png
+│   │   │
+│   │   ├── day1_knn_graph_construction.md
+│   │   ├── day2_graph_validation_analysis.md
+│   │   ├── day3_spatial_embedding_generation.md
+│   │   ├── day4_graph_dataset_preparation.md
+│   │   ├── day5_week3_final_validation.md
+│   │   └── week3_summary.md
+│   │
+│   └── week-4
+│       └── day1_gnn_data_preparation.md
 │
 ├── requirements.txt
 └── README.md
@@ -428,19 +435,87 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 
 ---
 
+## 🔄 Week 4 – GNN / Attention Modeling and Geospatial Dashboard
+
+### ✅ Day 1 – GNN Environment and Graph Data Preparation
+
+- Set up and verified PyTorch and PyTorch Geometric.
+- Loaded the finalized Week 3 spatial graph.
+- Validated node, edge and target alignment.
+- Converted graph edges into PyTorch Geometric edge indices.
+- Selected 24 valid node features.
+- Excluded `node_id` and raw property `id` from model inputs.
+- Kept `price` separate as the prediction target.
+- Created a 70/15/15 train, validation and test split.
+- Applied training-only feature scaling.
+- Created and validated the PyTorch Geometric graph dataset.
+- Saved the GNN-ready graph artifact.
+- Reloaded and verified the saved graph.
+
+### 📊 Week 4 Day 1 Results
+
+| Parameter | Result |
+|---|---:|
+| Graph Nodes | 21,613 |
+| Graph Edges | 108,065 |
+| Node Features | 24 |
+| Training Nodes | 15,129 |
+| Validation Nodes | 3,242 |
+| Test Nodes | 3,242 |
+| Target | `price` |
+| Self-Loops | 0 |
+| Validation | Passed ✅ |
+
+### 📁 Day 1 Output
+
+`data/processed/week-3/gnn/housing_graph_data.pt`
+
+### 📌 Week 4 Progress
+
+Week 4 is currently in progress.
+
+The finalized Week 3 spatial graph has been successfully converted into a PyTorch Geometric dataset containing node features, graph connectivity, price targets, and train/validation/test masks.
+
+This dataset is now ready for the baseline GNN training stage.
+
+---
+
 # 🚀 Upcoming Work
 
-## ⏳ Week 4 – Graph Neural Network & Deployment
+## 🔄 Week 4 – GNN / Attention Modeling and Geospatial Dashboard
 
-- Train a Graph Neural Network (GNN).
-- Implement attention-based spatial modeling.
-- Aggregate information from neighboring properties.
-- Compare GNN performance against the XGBoost baseline.
-- Analyze improvement in MAPE.
-- Develop the Streamlit valuation dashboard.
-- Visualize predicted property prices on interactive maps.
-- Display influential neighboring properties.
-- Complete final GitHub documentation and deployment.
+### ⏳ Day 2 – Baseline GNN Model Training
+
+- Build the baseline Graph Neural Network.
+- Train the model on the prepared graph dataset.
+- Generate property-price predictions.
+- Validate training and validation performance.
+- Save the trained GNN model.
+
+### ⏳ Day 3 – Attention-Based Spatial Modeling
+
+- Develop an attention-based graph model.
+- Learn the relative importance of neighboring properties.
+- Generate attention-based price predictions.
+- Compare the model with the baseline GNN.
+
+### ⏳ Day 4 – Model Comparison and Prediction Analysis
+
+- Compare GNN, attention-based model and XGBoost.
+- Calculate RMSE, MAPE, MAE and R².
+- Analyze spatial prediction improvements.
+- Generate prediction disparity and error analysis.
+
+### ⏳ Day 5 – Advanced Dashboard and Final Validation
+
+- Build the modular Streamlit valuation dashboard.
+- Add property-price prediction.
+- Add interactive spatial maps.
+- Add neighborhood intelligence.
+- Add model comparison and explanation modules.
+- Add what-if valuation analysis.
+- Validate the complete application.
+- Finalize Week 4 documentation and deployment.
 
 ---
 
@@ -451,6 +526,8 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 **Week 2 – Completed ✅**
 
 **Week 3 – Completed ✅**
+
+**Week 4 – In Progress 🔄**
 
 ### Completed Work
 
@@ -490,6 +567,18 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 - Final graph validation
 - GNN-ready spatial dataset preparation
 
+#### Week 4 – Day 1
+
+- GNN environment setup
+- PyTorch Geometric graph preparation
+- Node feature validation
+- Target separation
+- Train/validation/test mask creation
+- Training-only feature scaling
+- PyTorch Geometric `Data` object creation
+- Graph integrity validation
+- GNN dataset artifact generation
+
 ### Current Outputs
 
 #### Week 2
@@ -522,20 +611,15 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 - `data/processed/week-3/final_graph_edges.csv`
 - `data/processed/week-3/final_graph_targets.csv`
 
+#### Week 4
+
+`data/processed/week-3/gnn/housing_graph_data.pt`
+
 ### Next Phase
 
-The next stage focuses on **Week 4 – Graph Neural Network Development**.
+The next stage focuses on **training the baseline Graph Neural Network** using the finalized spatial graph.
 
-The finalized Week 3 graph dataset will be used to develop and train GNN models for spatially aware property-price prediction.
-
-Planned work includes:
-
-- GNN architecture development.
-- Graph-based property-price prediction.
-- Attention-based spatial modeling.
-- Comparison with the XGBoost benchmark.
-- Model evaluation using RMSE, MAPE, MAE and R².
-- Interactive prediction visualization and deployment.
+The trained GNN will ultimately be compared against the Week 2 XGBoost benchmark, which achieved a final MAPE of **17.31%**.
 
 ---
 
