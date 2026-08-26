@@ -78,9 +78,13 @@ Project-3-Geospatial-Valuation
 │       │
 │       ├── week-3
 │       │   ├── gnn
+│       │   │   ├── attention_gnn_predictions.csv
+│       │   │   ├── attention_gnn_training_curve.png
+│       │   │   ├── attention_gnn_training_history.csv
 │       │   │   ├── baseline_gnn_predictions.csv
 │       │   │   ├── baseline_gnn_training_curve.png
 │       │   │   ├── baseline_gnn_training_history.csv
+│       │   │   ├── gnn_model_comparison.csv
 │       │   │   └── housing_graph_data.pt
 │       │   │
 │       │   ├── final_graph_edges.csv
@@ -99,6 +103,7 @@ Project-3-Geospatial-Valuation
 │       └── tabular_features.csv
 │
 ├── models
+│   ├── attention_gnn.pt
 │   ├── baseline_gnn.pt
 │   ├── linear_regression_baseline.pkl
 │   └── xgboost_baseline.pkl
@@ -118,7 +123,8 @@ Project-3-Geospatial-Valuation
 │   ├── 12_graph_dataset_preparation.ipynb
 │   ├── 13_week3_final_validation.ipynb
 │   ├── 14_gnn_data_preparation.ipynb
-│   └── 15_gnn_model_training.ipynb
+│   ├── 15_gnn_model_training.ipynb
+│   └── 16_attention_spatial_model.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -157,7 +163,8 @@ Project-3-Geospatial-Valuation
 │   │
 │   └── week-4
 │       ├── day1_gnn_data_preparation.md
-│       └── day2_gn_model_training.md
+│       ├── day2_gnn_model_training.md
+│       └── day3_attention_spatial_model.md
 │
 ├── requirements.txt
 └── README.md
@@ -471,7 +478,7 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 | Self-Loops | 0 |
 | Validation | Passed ✅ |
 
-### Output
+### 📁 Day 1 Output
 
 `data/processed/week-3/gnn/housing_graph_data.pt`
 
@@ -513,26 +520,53 @@ The baseline GNN achieved approximately **22.36% lower RMSE** and **28.83% lower
 - `data/processed/week-3/gnn/baseline_gnn_training_curve.png`
 - `data/processed/week-3/gnn/baseline_gnn_predictions.csv`
 
+---
+
+### ✅ Day 3 – Attention-Based Spatial Modeling
+
+* Implemented a multi-head Graph Attention Network using `GATConv`.
+* Incorporated geographic Haversine distance as an edge feature.
+* Standardized edge-distance features.
+* Used the same graph structure and train/validation/test split as the baseline GNN.
+* Standardized the target using training data only.
+* Trained the attention-based model with early stopping.
+* Selected the best validation checkpoint.
+* Generated held-out property-price predictions.
+* Compared the Attention GNN with the baseline GNN and XGBoost.
+
+### 📊 Day 3 Results
+
+| Model            |      Test RMSE |  Test MAPE |    Test R² |
+| ---------------- | -------------: | ---------: | ---------: |
+| XGBoost          |    $103,398.17 |     17.31% |     0.8274 |
+| **Baseline GNN** | **$80,285.81** | **12.32%** | **0.8905** |
+| Attention GNN    |    $121,562.18 |     19.40% |     0.7490 |
+
+The Attention GNN produced a **19.40% test MAPE**, while the baseline GNN achieved **12.32%**.
+
+The baseline GraphSAGE model therefore remains the best-performing valuation model so far.
+
+### 📁 Day 3 Outputs
+
+* `models/attention_gnn.pt`
+* `data/processed/week-3/gnn/attention_gnn_training_history.csv`
+* `data/processed/week-3/gnn/attention_gnn_training_curve.png`
+* `data/processed/week-3/gnn/attention_gnn_predictions.csv`
+* `data/processed/week-3/gnn/gnn_model_comparison.csv`
+
 ### 📌 Week 4 Progress
 
-The baseline GNN has now been successfully trained and evaluated.
+The attention-based spatial modeling experiment has been completed.
 
-The test MAPE improved from the traditional XGBoost benchmark of **17.31%** to **12.32%** using the spatial graph, providing evidence that incorporating neighborhood relationships improves property-price prediction.
+The results confirm that the spatial graph provides substantial predictive improvement over the traditional XGBoost benchmark, but the current attention architecture does not outperform the simpler GraphSAGE baseline.
 
-The next stage will introduce an attention-based spatial model to determine whether learned neighbor importance can further improve the baseline GNN.
+The baseline GNN with **12.32% test MAPE** is therefore the current preferred model for the final valuation system.
 
 ---
 
 ## 🚀 Upcoming Work
 
 ### 🔄 Week 4 – GNN / Attention Modeling and Geospatial Dashboard
-
-### ⏳ Day 3 – Attention-Based Spatial Modeling
-
-- Implement an attention-based Graph Neural Network.
-- Learn the relative importance of neighboring properties.
-- Generate attention-based property-price predictions.
-- Compare the attention model against the baseline GNN.
 
 ### ⏳ Day 4 – Model Comparison and Prediction Analysis
 
@@ -627,6 +661,16 @@ The next stage will introduce an attention-based spatial model to determine whet
 - Property-price prediction
 - Baseline GNN model artifact generation
 
+#### Week 4 – Day 3
+
+* Attention-based GNN development
+* Multi-head graph attention
+* Geographic edge-distance integration
+* Attention model training and validation
+* Held-out prediction generation
+* GNN model comparison
+* Best-model identification for final deployment
+
 ### Current Outputs
 
 #### Week 2
@@ -666,14 +710,23 @@ The next stage will introduce an attention-based spatial model to determine whet
 - `data/processed/week-3/gnn/baseline_gnn_training_history.csv`
 - `data/processed/week-3/gnn/baseline_gnn_training_curve.png`
 - `data/processed/week-3/gnn/baseline_gnn_predictions.csv`
+- `models/attention_gnn.pt`
+- `data/processed/week-3/gnn/attention_gnn_training_history.csv`
+- `data/processed/week-3/gnn/attention_gnn_training_curve.png`
+- `data/processed/week-3/gnn/attention_gnn_predictions.csv`
+- `data/processed/week-3/gnn/gnn_model_comparison.csv`
 
 ### Next Phase
 
-The next stage focuses on **attention-based spatial modeling**.
+The next stage focuses on **Week 4 Day 4 – Model Comparison and Prediction Analysis**.
 
-The baseline GNN achieved a test MAPE of **12.32%**, improving substantially over the Week 2 XGBoost benchmark of **17.31%**.
+The three valuation approaches will be formally compared:
 
-The next objective is to implement an attention-based GNN that can learn the relative importance of neighboring properties and determine whether attention-based spatial modeling can further improve property-price prediction.
+**XGBoost → Baseline GNN → Attention GNN**
+
+The analysis will evaluate RMSE, MAPE, MAE and R², along with property-level prediction errors and spatial prediction differences.
+
+The current best model is the **Baseline GNN with 12.32% test MAPE**, which will be the primary candidate for the final geospatial valuation dashboard unless the Day 4 analysis identifies a stronger deployment choice.
 
 ---
 
