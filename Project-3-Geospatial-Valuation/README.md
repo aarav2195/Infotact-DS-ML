@@ -78,6 +78,9 @@ Project-3-Geospatial-Valuation
 │       │
 │       ├── week-3
 │       │   ├── gnn
+│       │   │   ├── baseline_gnn_predictions.csv
+│       │   │   ├── baseline_gnn_training_curve.png
+│       │   │   ├── baseline_gnn_training_history.csv
 │       │   │   └── housing_graph_data.pt
 │       │   │
 │       │   ├── final_graph_edges.csv
@@ -96,6 +99,7 @@ Project-3-Geospatial-Valuation
 │       └── tabular_features.csv
 │
 ├── models
+│   ├── baseline_gnn.pt
 │   ├── linear_regression_baseline.pkl
 │   └── xgboost_baseline.pkl
 │
@@ -113,7 +117,8 @@ Project-3-Geospatial-Valuation
 │   ├── 11_spatial_embedding_generation.ipynb
 │   ├── 12_graph_dataset_preparation.ipynb
 │   ├── 13_week3_final_validation.ipynb
-│   └── 14_gnn_data_preparation.ipynb
+│   ├── 14_gnn_data_preparation.ipynb
+│   └── 15_gnn_model_training.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -151,7 +156,8 @@ Project-3-Geospatial-Valuation
 │   │   └── week3_summary.md
 │   │
 │   └── week-4
-│       └── day1_gnn_data_preparation.md
+│       ├── day1_gnn_data_preparation.md
+│       └── day2_gn_model_training.md
 │
 ├── requirements.txt
 └── README.md
@@ -449,10 +455,9 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 - Created a 70/15/15 train, validation and test split.
 - Applied training-only feature scaling.
 - Created and validated the PyTorch Geometric graph dataset.
-- Saved the GNN-ready graph artifact.
-- Reloaded and verified the saved graph.
+- Saved and reloaded the GNN-ready graph artifact.
 
-### 📊 Week 4 Day 1 Results
+### 📊 Day 1 Results
 
 | Parameter | Result |
 |---|---:|
@@ -466,56 +471,89 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 | Self-Loops | 0 |
 | Validation | Passed ✅ |
 
-### 📁 Day 1 Output
+### Output
 
 `data/processed/week-3/gnn/housing_graph_data.pt`
 
+---
+
+### ✅ Day 2 – Baseline GNN Model Training
+
+- Implemented a GraphSAGE-based baseline GNN using `SAGEConv`.
+- Used the 24 validated node features.
+- Standardized the target using training data only.
+- Trained the model using the training-node mask.
+- Implemented validation monitoring and early stopping.
+- Restored the best validation checkpoint.
+- Generated training, validation and test predictions.
+- Evaluated RMSE, MAPE and R².
+- Saved the trained GNN model and training artifacts.
+
+### 📊 Day 2 Results
+
+| Split | RMSE | MAPE | R² |
+|---|---:|---:|---:|
+| Training | $77,712.08 | 12.39% | 0.9043 |
+| Validation | $79,574.98 | 13.01% | 0.9001 |
+| **Test** | **$80,285.81** | **12.32%** | **0.8905** |
+
+### 📈 GNN vs XGBoost Benchmark
+
+| Model | Test RMSE | Test MAPE | Test R² |
+|---|---:|---:|---:|
+| XGBoost | $103,398.17 | 17.31% | 0.8274 |
+| **Baseline GNN** | **$80,285.81** | **12.32%** | **0.8905** |
+
+The baseline GNN achieved approximately **22.36% lower RMSE** and **28.83% lower MAPE** than the Week 2 XGBoost benchmark.
+
+### 📁 Day 2 Outputs
+
+- `models/baseline_gnn.pt`
+- `data/processed/week-3/gnn/baseline_gnn_training_history.csv`
+- `data/processed/week-3/gnn/baseline_gnn_training_curve.png`
+- `data/processed/week-3/gnn/baseline_gnn_predictions.csv`
+
 ### 📌 Week 4 Progress
 
-Week 4 is currently in progress.
+The baseline GNN has now been successfully trained and evaluated.
 
-The finalized Week 3 spatial graph has been successfully converted into a PyTorch Geometric dataset containing node features, graph connectivity, price targets, and train/validation/test masks.
+The test MAPE improved from the traditional XGBoost benchmark of **17.31%** to **12.32%** using the spatial graph, providing evidence that incorporating neighborhood relationships improves property-price prediction.
 
-This dataset is now ready for the baseline GNN training stage.
+The next stage will introduce an attention-based spatial model to determine whether learned neighbor importance can further improve the baseline GNN.
 
 ---
 
-# 🚀 Upcoming Work
+## 🚀 Upcoming Work
 
-## 🔄 Week 4 – GNN / Attention Modeling and Geospatial Dashboard
-
-### ⏳ Day 2 – Baseline GNN Model Training
-
-- Build the baseline Graph Neural Network.
-- Train the model on the prepared graph dataset.
-- Generate property-price predictions.
-- Validate training and validation performance.
-- Save the trained GNN model.
+### 🔄 Week 4 – GNN / Attention Modeling and Geospatial Dashboard
 
 ### ⏳ Day 3 – Attention-Based Spatial Modeling
 
-- Develop an attention-based graph model.
+- Implement an attention-based Graph Neural Network.
 - Learn the relative importance of neighboring properties.
-- Generate attention-based price predictions.
-- Compare the model with the baseline GNN.
+- Generate attention-based property-price predictions.
+- Compare the attention model against the baseline GNN.
 
 ### ⏳ Day 4 – Model Comparison and Prediction Analysis
 
-- Compare GNN, attention-based model and XGBoost.
+- Compare XGBoost, baseline GNN and attention-based GNN.
 - Calculate RMSE, MAPE, MAE and R².
 - Analyze spatial prediction improvements.
-- Generate prediction disparity and error analysis.
+- Analyze prediction disparities and model errors.
+- Prepare the final model for deployment.
 
-### ⏳ Day 5 – Advanced Dashboard and Final Validation
+### ⏳ Day 5 – Advanced Geospatial Dashboard and Final Validation
 
 - Build the modular Streamlit valuation dashboard.
 - Add property-price prediction.
-- Add interactive spatial maps.
+- Add interactive geospatial maps.
 - Add neighborhood intelligence.
-- Add model comparison and explanation modules.
-- Add what-if valuation analysis.
+- Add spatial price-disparity analysis.
+- Add model comparison.
+- Add prediction explanations.
+- Add what-if valuation.
 - Validate the complete application.
-- Finalize Week 4 documentation and deployment.
+- Finalize deployment and documentation.
 
 ---
 
@@ -557,7 +595,7 @@ This dataset is now ready for the baseline GNN training stage.
 - XGBoost benchmark selection
 - Week 2 validation and documentation
 
-### Week 3 – Completed ✅
+#### Week 3
 
 - KNN spatial graph construction
 - Graph validation and neighborhood analysis
@@ -571,13 +609,23 @@ This dataset is now ready for the baseline GNN training stage.
 
 - GNN environment setup
 - PyTorch Geometric graph preparation
-- Node feature validation
+- 24-node-feature validation
 - Target separation
-- Train/validation/test mask creation
+- 70/15/15 train/validation/test masks
 - Training-only feature scaling
 - PyTorch Geometric `Data` object creation
-- Graph integrity validation
-- GNN dataset artifact generation
+- GNN graph artifact generation
+
+#### Week 4 – Day 2
+
+- GraphSAGE baseline GNN
+- Training with spatial graph message passing
+- Target standardization
+- Early stopping
+- Validation checkpoint selection
+- Test-set evaluation
+- Property-price prediction
+- Baseline GNN model artifact generation
 
 ### Current Outputs
 
@@ -613,13 +661,19 @@ This dataset is now ready for the baseline GNN training stage.
 
 #### Week 4
 
-`data/processed/week-3/gnn/housing_graph_data.pt`
+- `data/processed/week-3/gnn/housing_graph_data.pt`
+- `models/baseline_gnn.pt`
+- `data/processed/week-3/gnn/baseline_gnn_training_history.csv`
+- `data/processed/week-3/gnn/baseline_gnn_training_curve.png`
+- `data/processed/week-3/gnn/baseline_gnn_predictions.csv`
 
 ### Next Phase
 
-The next stage focuses on **training the baseline Graph Neural Network** using the finalized spatial graph.
+The next stage focuses on **attention-based spatial modeling**.
 
-The trained GNN will ultimately be compared against the Week 2 XGBoost benchmark, which achieved a final MAPE of **17.31%**.
+The baseline GNN achieved a test MAPE of **12.32%**, improving substantially over the Week 2 XGBoost benchmark of **17.31%**.
+
+The next objective is to implement an attention-based GNN that can learn the relative importance of neighboring properties and determine whether attention-based spatial modeling can further improve property-price prediction.
 
 ---
 
