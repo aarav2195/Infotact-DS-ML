@@ -78,12 +78,19 @@ Project-3-Geospatial-Valuation
 │       │
 │       ├── week-3
 │       │   ├── gnn
+│       │   │   ├── day4
+│       │   │   │   └── final_model_split.csv
+│       │   │   │   
 │       │   │   ├── attention_gnn_predictions.csv
 │       │   │   ├── attention_gnn_training_curve.png
 │       │   │   ├── attention_gnn_training_history.csv
 │       │   │   ├── baseline_gnn_predictions.csv
 │       │   │   ├── baseline_gnn_training_curve.png
 │       │   │   ├── baseline_gnn_training_history.csv
+│       │   │   ├── dashboard_predictions.csv
+│       │   │   ├── final_model_comparison.csv
+│       │   │   ├── final_prediction_error_analysis.csv
+│       │   │   ├── final_price_range_analysis.csv
 │       │   │   ├── gnn_model_comparison.csv
 │       │   │   └── housing_graph_data.pt
 │       │   │
@@ -106,7 +113,8 @@ Project-3-Geospatial-Valuation
 │   ├── attention_gnn.pt
 │   ├── baseline_gnn.pt
 │   ├── linear_regression_baseline.pkl
-│   └── xgboost_baseline.pkl
+│   ├── xgboost_baseline.pkl
+│   └── xgboost_comparison.pkl
 │
 ├── notebooks
 │   ├── 01_data_acquisition.ipynb
@@ -124,7 +132,8 @@ Project-3-Geospatial-Valuation
 │   ├── 13_week3_final_validation.ipynb
 │   ├── 14_gnn_data_preparation.ipynb
 │   ├── 15_gnn_model_training.ipynb
-│   └── 16_attention_spatial_model.ipynb
+│   ├── 16_attention_spatial_model.ipynb
+│   └── 17_model_comparison_analysis.ipynb
 │
 ├── reports
 │   ├── week-1
@@ -162,9 +171,14 @@ Project-3-Geospatial-Valuation
 │   │   └── week3_summary.md
 │   │
 │   └── week-4
+│       ├── visualizations
+│       │   ├── final_actual_vs_predicted.png
+│       │   └── final_model_mape_comparison.png
+│       │
 │       ├── day1_gnn_data_preparation.md
 │       ├── day2_gnn_model_training.md
-│       └── day3_attention_spatial_model.md
+│       ├── day3_attention_spatial_model.md
+│       └── day4_model_comparison_analysis.md
 │
 ├── requirements.txt
 └── README.md
@@ -459,7 +473,7 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 - Selected 24 valid node features.
 - Excluded `node_id` and raw property `id` from model inputs.
 - Kept `price` separate as the prediction target.
-- Created a 70/15/15 train, validation and test split.
+- Created a 70/15/15 train-validation-test split.
 - Applied training-only feature scaling.
 - Created and validated the PyTorch Geometric graph dataset.
 - Saved and reloaded the GNN-ready graph artifact.
@@ -478,23 +492,19 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 | Self-Loops | 0 |
 | Validation | Passed ✅ |
 
-### 📁 Day 1 Output
-
-`data/processed/week-3/gnn/housing_graph_data.pt`
-
 ---
 
 ### ✅ Day 2 – Baseline GNN Model Training
 
 - Implemented a GraphSAGE-based baseline GNN using `SAGEConv`.
-- Used the 24 validated node features.
-- Standardized the target using training data only.
-- Trained the model using the training-node mask.
+- Used the validated 24 node features.
+- Standardized the price target using training data only.
+- Trained the GNN using the training-node mask.
 - Implemented validation monitoring and early stopping.
 - Restored the best validation checkpoint.
-- Generated training, validation and test predictions.
-- Evaluated RMSE, MAPE and R².
-- Saved the trained GNN model and training artifacts.
+- Generated property-price predictions.
+- Evaluated RMSE, MAPE, MAE and R².
+- Saved the trained baseline GNN model and training artifacts.
 
 ### 📊 Day 2 Results
 
@@ -504,77 +514,88 @@ The finalized graph dataset is ready for the **GNN modeling stage in Week 4**.
 | Validation | $79,574.98 | 13.01% | 0.9001 |
 | **Test** | **$80,285.81** | **12.32%** | **0.8905** |
 
-### 📈 GNN vs XGBoost Benchmark
-
-| Model | Test RMSE | Test MAPE | Test R² |
-|---|---:|---:|---:|
-| XGBoost | $103,398.17 | 17.31% | 0.8274 |
-| **Baseline GNN** | **$80,285.81** | **12.32%** | **0.8905** |
-
-The baseline GNN achieved approximately **22.36% lower RMSE** and **28.83% lower MAPE** than the Week 2 XGBoost benchmark.
-
-### 📁 Day 2 Outputs
-
-- `models/baseline_gnn.pt`
-- `data/processed/week-3/gnn/baseline_gnn_training_history.csv`
-- `data/processed/week-3/gnn/baseline_gnn_training_curve.png`
-- `data/processed/week-3/gnn/baseline_gnn_predictions.csv`
+The Baseline GNN achieved a **12.32% test MAPE**, establishing the first graph-based valuation benchmark.
 
 ---
 
 ### ✅ Day 3 – Attention-Based Spatial Modeling
 
-* Implemented a multi-head Graph Attention Network using `GATConv`.
-* Incorporated geographic Haversine distance as an edge feature.
-* Standardized edge-distance features.
-* Used the same graph structure and train/validation/test split as the baseline GNN.
-* Standardized the target using training data only.
-* Trained the attention-based model with early stopping.
-* Selected the best validation checkpoint.
-* Generated held-out property-price predictions.
-* Compared the Attention GNN with the baseline GNN and XGBoost.
+- Implemented a multi-head Graph Attention Network using `GATConv`.
+- Added geographic `distance_km` as an edge feature.
+- Applied logarithmic transformation and standardization to edge distances.
+- Used the same graph structure and data split as the baseline GNN.
+- Standardized the target using training data only.
+- Trained the Attention GNN with early stopping.
+- Selected the best checkpoint using validation RMSE.
+- Generated attention-based property-price predictions.
+- Compared the Attention GNN with the Baseline GNN.
 
 ### 📊 Day 3 Results
 
-| Model            |      Test RMSE |  Test MAPE |    Test R² |
-| ---------------- | -------------: | ---------: | ---------: |
-| XGBoost          |    $103,398.17 |     17.31% |     0.8274 |
+| Model | Test RMSE | Test MAPE | Test R² |
+|---|---:|---:|---:|
 | **Baseline GNN** | **$80,285.81** | **12.32%** | **0.8905** |
-| Attention GNN    |    $121,562.18 |     19.40% |     0.7490 |
+| Attention GNN | $121,562.18 | 19.40% | 0.7490 |
 
-The Attention GNN produced a **19.40% test MAPE**, while the baseline GNN achieved **12.32%**.
+The Attention GNN produced a **19.40% test MAPE**, which was higher than the Baseline GNN. Therefore, the Baseline GNN remained the stronger graph-based model.
 
-The baseline GraphSAGE model therefore remains the best-performing valuation model so far.
+---
 
-### 📁 Day 3 Outputs
+### ✅ Day 4 – Model Comparison and Prediction Analysis
 
-* `models/attention_gnn.pt`
-* `data/processed/week-3/gnn/attention_gnn_training_history.csv`
-* `data/processed/week-3/gnn/attention_gnn_training_curve.png`
-* `data/processed/week-3/gnn/attention_gnn_predictions.csv`
-* `data/processed/week-3/gnn/gnn_model_comparison.csv`
+- Created a controlled common train-validation-test split.
+- Retrained XGBoost using the same feature set and test properties used by the GNN models.
+- Evaluated XGBoost, Baseline GNN and Attention GNN on the same held-out properties.
+- Calculated RMSE, MAPE, MAE and R².
+- Performed prediction-error analysis.
+- Performed price-range error analysis.
+- Compared model performance against the historical Week 2 XGBoost benchmark.
+- Selected the best-performing model using test MAPE.
+- Created a dashboard-ready prediction dataset.
+- Generated final model comparison visualizations.
+- Saved the comparison XGBoost model.
 
-### 📌 Week 4 Progress
+### 📊 Day 4 Final Model Comparison
 
-The attention-based spatial modeling experiment has been completed.
+| Model | Test RMSE | Test MAPE | Test R² |
+|---|---:|---:|---:|
+| **XGBoost** | **$75,232.36** | **11.39%** | **0.9038** |
+| Baseline GNN | $80,285.81 | 12.32% | 0.8905 |
+| Attention GNN | $121,562.18 | 19.40% | 0.7490 |
 
-The results confirm that the spatial graph provides substantial predictive improvement over the traditional XGBoost benchmark, but the current attention architecture does not outperform the simpler GraphSAGE baseline.
+### 📌 Day 4 Finding
 
-The baseline GNN with **12.32% test MAPE** is therefore the current preferred model for the final valuation system.
+The original Week 2 XGBoost benchmark achieved **17.31% MAPE**.
+
+After retraining XGBoost using the same feature set and common test properties as the graph models, XGBoost achieved **11.39% MAPE** and became the best-performing model in the controlled comparison.
+
+Current model ranking:
+
+**XGBoost → Baseline GNN → Attention GNN**
+
+XGBoost is therefore the current primary prediction model for the final dashboard, while the GNN models remain available for spatial comparison and analysis.
+
+---
+
+## 📌 Week 4 Progress
+
+Week 4 is currently **in progress**.
+
+The project has completed the core GNN and model-comparison stages:
+
+**GNN Data Preparation → Baseline GraphSAGE → Attention GNN → Controlled Model Comparison → Best Model Selection**
+
+The current best model is **XGBoost with 11.39% test MAPE** on the controlled Day-4 test set.
+
+The Baseline GNN achieved **12.32% test MAPE**, demonstrating strong graph-based predictive performance, while the tested Attention GNN achieved **19.40% MAPE**.
+
+The next stage focuses on building the final **advanced modular Streamlit geospatial valuation dashboard** using the selected model and the generated prediction/error datasets.
 
 ---
 
 ## 🚀 Upcoming Work
 
 ### 🔄 Week 4 – GNN / Attention Modeling and Geospatial Dashboard
-
-### ⏳ Day 4 – Model Comparison and Prediction Analysis
-
-- Compare XGBoost, baseline GNN and attention-based GNN.
-- Calculate RMSE, MAPE, MAE and R².
-- Analyze spatial prediction improvements.
-- Analyze prediction disparities and model errors.
-- Prepare the final model for deployment.
 
 ### ⏳ Day 5 – Advanced Geospatial Dashboard and Final Validation
 
@@ -663,13 +684,24 @@ The baseline GNN with **12.32% test MAPE** is therefore the current preferred mo
 
 #### Week 4 – Day 3
 
-* Attention-based GNN development
-* Multi-head graph attention
-* Geographic edge-distance integration
-* Attention model training and validation
-* Held-out prediction generation
-* GNN model comparison
-* Best-model identification for final deployment
+- Attention-based GNN development
+- Multi-head graph attention
+- Geographic edge-distance integration
+- Attention model training and validation
+- Attention GNN prediction generation
+- Attention model comparison
+
+#### Week 4 – Day 4
+
+- Common model evaluation split
+- XGBoost controlled comparison
+- Baseline GNN comparison
+- Attention GNN comparison
+- RMSE, MAPE, MAE and R² analysis
+- Prediction-error analysis
+- Price-range error analysis
+- Best-model selection
+- Dashboard-ready prediction dataset
 
 ### Current Outputs
 
@@ -715,18 +747,34 @@ The baseline GNN with **12.32% test MAPE** is therefore the current preferred mo
 - `data/processed/week-3/gnn/attention_gnn_training_curve.png`
 - `data/processed/week-3/gnn/attention_gnn_predictions.csv`
 - `data/processed/week-3/gnn/gnn_model_comparison.csv`
+- `data/processed/week-3/gnn/day4/final_model_split.csv`
+- `data/processed/week-3/gnn/day4/final_model_comparison.csv`
+- `data/processed/week-3/gnn/day4/final_prediction_error_analysis.csv`
+- `data/processed/week-3/gnn/day4/final_price_range_analysis.csv`
+- `data/processed/week-3/gnn/day4/dashboard_predictions.csv`
+- `models/xgboost_comparison.pkl`
+- `reports/week-4/visualizations/final_model_mape_comparison.png`
+- `reports/week-4/visualizations/final_actual_vs_predicted.png`
 
 ### Next Phase
 
-The next stage focuses on **Week 4 Day 4 – Model Comparison and Prediction Analysis**.
+The next stage is **Week 4 Day 5 – Advanced Geospatial Dashboard and Final Validation**.
 
-The three valuation approaches will be formally compared:
+The final Streamlit application will use the selected XGBoost model as the current primary prediction engine while retaining GNN outputs for model comparison and spatial analysis.
 
-**XGBoost → Baseline GNN → Attention GNN**
+The dashboard will be developed as a modular application with:
 
-The analysis will evaluate RMSE, MAPE, MAE and R², along with property-level prediction errors and spatial prediction differences.
+- Property Price Prediction
+- Interactive Property Map
+- Spatial Price Disparity Analysis
+- Neighborhood Intelligence
+- Model Comparison
+- Prediction Error Analysis
+- Prediction Explanation
+- What-If Valuation
+- Model and Dataset Information
 
-The current best model is the **Baseline GNN with 12.32% test MAPE**, which will be the primary candidate for the final geospatial valuation dashboard unless the Day 4 analysis identifies a stronger deployment choice.
+The final application will provide feature-driven property valuation together with geographic and neighborhood context.
 
 ---
 
