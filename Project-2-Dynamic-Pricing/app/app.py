@@ -283,7 +283,7 @@ with col1:
         margin=dict(l=20,r=20,t=60,b=20)
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with col2:
 
@@ -303,7 +303,7 @@ with col2:
         margin=dict(l=20,r=20,t=60,b=20)
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 col3, col4 = st.columns(2)
 
@@ -325,7 +325,7 @@ with col3:
         margin=dict(l=20,r=20,t=60,b=20)
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with col4:
 
@@ -345,7 +345,7 @@ with col4:
         margin=dict(l=20,r=20,t=60,b=20)
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 st.divider()
 
@@ -379,7 +379,7 @@ display_df = display_df.drop(columns=["Episodes"])
 
 st.dataframe(
     display_df,
-    use_container_width=True,
+    width="stretch",
     hide_index=True
 )
 
@@ -480,7 +480,7 @@ fig.update_layout(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 
 st.markdown("---")
@@ -511,7 +511,7 @@ fig.update_layout(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 
 st.markdown("---")
@@ -542,7 +542,7 @@ fig.update_layout(
 
 st.plotly_chart(
     fig,
-    use_container_width=True
+    width="stretch"
 )
 
 st.markdown("---")

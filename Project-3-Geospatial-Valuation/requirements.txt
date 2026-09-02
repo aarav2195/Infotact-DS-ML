@@ -2,6 +2,8 @@ pandas
 numpy
 matplotlib
 plotly
+pydeck
+joblib
 scikit-learn
 xgboost
 geopandas
